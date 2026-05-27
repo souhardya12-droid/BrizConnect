@@ -254,6 +254,237 @@
   }
   .t-link:hover { border-color: var(--accent); }
 
+
+  /* ── GOOGLE MAP EMBED ── */
+  .map-section-wrap {
+    background: linear-gradient(180deg, #fff8ed 0%, var(--cream) 100%);
+    border-top: 1px solid #efe2cc;
+    border-bottom: 1px solid #efe2cc;
+  }
+  .map-shell {
+    display: grid;
+    grid-template-columns: minmax(280px, 560px) minmax(250px, 1fr);
+    gap: 1.2rem;
+    align-items: start;
+    justify-content: center;
+  }
+  .map-frame {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #e6d5b8;
+    background: #efe2cc;
+    box-shadow: 0 12px 35px rgba(26,18,9,0.08);
+  }
+  .google-map-embed {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    filter: saturate(0.94) contrast(0.98);
+  }
+  .map-label-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .map-label {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(26,18,9,0.12);
+    color: var(--dark);
+    border-radius: 999px;
+    padding: 0.32rem 0.58rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: 0 8px 22px rgba(26,18,9,0.14);
+    white-space: nowrap;
+    cursor: pointer;
+    pointer-events: auto;
+    font-family: 'DM Sans', sans-serif;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  }
+  .map-label:hover,
+  .map-label.selected {
+    transform: translate(-50%, -50%) scale(1.06);
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px rgba(26,18,9,0.22);
+  }
+  .map-label .label-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.75rem;
+    flex: 0 0 auto;
+  }
+  .map-label.house .label-icon { background: var(--red); }
+  .map-label.transport .label-icon { background: var(--blue); }
+  .map-label.campus .label-icon { background: var(--green); }
+  .map-label.faded { display: none; }
+  .map-detail-card {
+    margin-top: 0.85rem;
+    background: #fffaf2;
+    border: 1px solid #f0e5d0;
+    border-radius: 16px;
+    padding: 0.85rem;
+  }
+  .map-detail-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    border-radius: 999px;
+    background: var(--dark);
+    color: #fff;
+    padding: 0.22rem 0.55rem;
+    font-size: 0.66rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.55rem;
+  }
+  .map-detail-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  .map-detail-copy {
+    color: var(--mid);
+    font-size: 0.76rem;
+    line-height: 1.5;
+    margin-bottom: 0.65rem;
+  }
+  .map-coordinates {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    background: #fff;
+    border: 1px solid #efe2cc;
+    border-radius: 10px;
+    padding: 0.55rem;
+    font-size: 0.72rem;
+    color: var(--dark);
+    margin-bottom: 0.65rem;
+    overflow-wrap: anywhere;
+  }
+  .map-actions { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+  .map-action-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e6d5b8;
+    border-radius: 999px;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.73rem;
+    font-weight: 900;
+    color: var(--dark);
+    text-decoration: none;
+    background: #fff;
+  }
+  .map-action-link.primary { background: var(--red); border-color: var(--red); color: #fff; }
+  .google-map-note {
+    position: absolute;
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    z-index: 3;
+    background: rgba(26,18,9,0.84);
+    color: rgba(255,255,255,0.82);
+    border-radius: 14px;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    pointer-events: none;
+  }
+  .map-panel {
+    background: #fff;
+    border: 1px solid #e6d5b8;
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: 0 8px 28px rgba(26,18,9,0.06);
+  }
+  .map-panel-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+  .map-panel-sub { color: var(--mid); font-size: 0.78rem; line-height: 1.55; margin-bottom: 0.9rem; }
+  .map-controls { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.9rem; }
+  .map-filter {
+    border: 1px solid #e6d5b8;
+    background: #fff8ed;
+    color: var(--mid);
+    border-radius: 999px;
+    padding: 0.38rem 0.68rem;
+    font-size: 0.73rem;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .map-filter:hover, .map-filter.active { background: var(--dark); border-color: var(--dark); color: #fff; }
+  .map-legend {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 0.75rem;
+  }
+  .map-legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    background: #fffaf2;
+    border: 1px solid #f0e5d0;
+    border-radius: 14px;
+    padding: 0.75rem;
+  }
+  .map-legend-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1rem;
+    flex: 0 0 auto;
+  }
+  .map-legend-icon.house { background: var(--red); }
+  .map-legend-icon.transport { background: var(--blue); }
+  .map-legend-icon.campus { background: var(--green); }
+  .map-legend-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.86rem; margin-bottom: 0.12rem; }
+  .map-legend-copy { color: var(--mid); font-size: 0.75rem; line-height: 1.45; }
+  .map-note {
+    margin-top: 0.85rem;
+    background: #fff3e0;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.73rem;
+    line-height: 1.5;
+    color: var(--mid);
+  }
+  @media (max-width: 900px) {
+    .map-shell { grid-template-columns: minmax(0, 560px); }
+  }
+  @media (max-width: 600px) {
+    .map-frame { border-radius: 18px; }
+    .map-label { font-size: 0.6rem; padding: 0.26rem 0.45rem; }
+    .map-label .label-text { display: none; }
+    .google-map-note { font-size: 0.66rem; }
+  }
+
   /* ── CONNECTIONS ── */
   .connections-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
   .conn-card {
@@ -517,6 +748,7 @@
   <div class="nav-links">
     <a href="#housing" class="active">Housing</a>
     <a href="#transport">Transport</a>
+    <a href="#map">Map</a>
     <a href="#connections">Connections</a>
     <a href="#chat">Chat</a>
   </div>
@@ -531,6 +763,7 @@
   <div class="hero-btns">
     <button class="btn-primary" onclick="document.getElementById('housing').scrollIntoView({behavior:'smooth'})">🏠 Find Housing</button>
     <button class="btn-ghost" onclick="document.getElementById('transport').scrollIntoView({behavior:'smooth'})">🚌 Transport Guide</button>
+    <button class="btn-ghost" onclick="document.getElementById('map')?.scrollIntoView({behavior:'smooth'})">🗺️ Explore Map</button>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">10<span>+</span></div><div class="stat-l">Guides</div></div>
@@ -768,6 +1001,69 @@
   </div>
 </div>
 
+
+<!-- GOOGLE MAP BRISTOL OVERVIEW -->
+<section class="map-section-wrap" id="map">
+  <div class="section">
+    <div class="pill-header blue">🗺️ Bristol Map</div>
+    <h2 class="section-title fadeup">Housing & transport map</h2>
+    <p class="section-sub fadeup delay1">A Google Maps embed with clickable HTML labels. Each label is positioned from stored latitude/longitude values inside the Bristol map bounds.</p>
+
+    <div class="map-shell fadeup delay2">
+      <div class="map-frame" aria-label="Google map of Bristol with interactive coordinate labels">
+        <iframe
+          class="google-map-embed"
+          id="google-map-embed"
+          title="Google Map of Bristol student housing and transport areas"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?ll=51.4640,-2.5950&z=13&t=m&output=embed">
+        </iframe>
+
+        <div class="map-label-layer" id="google-map-label-layer" aria-label="Clickable Bristol housing and transport labels"></div>
+
+        <div class="google-map-note">Click a label to view its coordinates and a Google Maps link. Labels are HTML overlays positioned from latitude/longitude.</div>
+      </div>
+
+      <aside class="map-panel" aria-label="Bristol map controls and selected place details">
+        <div class="map-panel-title">Interactive coordinate labels</div>
+        <div class="map-panel-sub">The label positions are calculated from real latitude/longitude values using a fixed Bristol viewport. Use filters to simplify the view.</div>
+
+        <div class="map-controls" aria-label="Filter map labels">
+          <button class="map-filter active" type="button" onclick="filterGoogleMapLabels(this,'all')">All labels</button>
+          <button class="map-filter" type="button" onclick="filterGoogleMapLabels(this,'housing')">🏠 Housing</button>
+          <button class="map-filter" type="button" onclick="filterGoogleMapLabels(this,'transport')">🚌 Transport</button>
+          <button class="map-filter" type="button" onclick="filterGoogleMapLabels(this,'campus')">🎓 Campus</button>
+        </div>
+
+        <div class="map-detail-card" id="map-detail-card" aria-live="polite">
+          <div class="map-detail-kicker">🗺️ Selected place</div>
+          <div class="map-detail-name">Choose a label on the map</div>
+          <div class="map-detail-copy">Click any 🏠 housing label or 🚌 transport label to see its coordinates and open it in Google Maps.</div>
+          <div class="map-coordinates">Lat/Lng will appear here.</div>
+        </div>
+
+        <div class="map-legend">
+          <div class="map-legend-item">
+            <span class="map-legend-icon house">🏠</span>
+            <div><div class="map-legend-title">Housing points</div><div class="map-legend-copy">Specific halls plus common student rental neighbourhood anchors.</div></div>
+          </div>
+          <div class="map-legend-item">
+            <span class="map-legend-icon transport">🚌</span>
+            <div><div class="map-legend-title">Transport points/routes</div><div class="map-legend-copy">Rail stations, bus route anchors and city transport links.</div></div>
+          </div>
+          <div class="map-legend-item">
+            <span class="map-legend-icon campus">🎓</span>
+            <div><div class="map-legend-title">Campus anchor</div><div class="map-legend-copy">University of Bristol campus reference point near Wills Memorial Building.</div></div>
+          </div>
+        </div>
+
+        <div class="map-note">For reliability, the Google map stays as a normal iframe and the clickable labels are lightweight webpage elements placed above it.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
 <!-- STUDENT CONNECTIONS -->
 <section class="section" id="connections">
   <div class="pill-header green">🤝 Student Connections</div>
@@ -921,7 +1217,7 @@
   <a href="https://www.bristol.ac.uk/alumni/get-involved/bristol-voices-/">Bristol Voices</a> &nbsp;·&nbsp;
   <a href="https://www.bristolsu.org.uk">Students' Union</a>
   <br><br>
-  <span style="opacity:0.4;font-size:0.7rem;">Prototype v0.2 — Threaded vector chat demo · Day 6 presentation ready</span>
+  <span style="opacity:0.4;font-size:0.7rem;">Prototype v0.5 — Threaded vector chat + interactive coordinate map labels · Day 6 presentation ready</span>
 </footer>
 
 <script>
@@ -1238,8 +1534,199 @@
     }
   });
 
+
+
+  // Google Maps coordinate-driven overlay labels
+  const BRISTOL_MAP_BOUNDS = {
+    north: 51.486,
+    south: 51.442,
+    west: -2.637,
+    east: -2.553
+  };
+
+  const GOOGLE_MAP_LOCATIONS = [
+    {
+      id: 'uob-campus',
+      type: 'campus',
+      icon: '🎓',
+      label: 'UoB Campus',
+      name: 'University of Bristol campus',
+      lat: 51.45617,
+      lng: -2.60462,
+      detail: 'Campus anchor near Wills Memorial Building / Queen’s Road.'
+    },
+    {
+      id: 'thirty-three',
+      type: 'housing',
+      icon: '🏠',
+      label: 'Accommodation at 33',
+      name: 'Accommodation at Thirty-Three',
+      lat: 51.4568,
+      lng: -2.5968,
+      detail: 'UoB city-centre residence at 33 Colston Street, useful for Clifton campus and central Bristol.'
+    },
+    {
+      id: 'clifton-hill-house',
+      type: 'housing',
+      icon: '🏠',
+      label: 'Clifton Hill House',
+      name: 'Clifton Hill House',
+      lat: 51.4576,
+      lng: -2.6163,
+      detail: 'UoB catered residence in Clifton / West Residential Village.'
+    },
+    {
+      id: 'hiatt-baker',
+      type: 'housing',
+      icon: '🏠',
+      label: 'Hiatt Baker',
+      name: 'Hiatt Baker Hall / Stoke Bishop halls',
+      lat: 51.4760,
+      lng: -2.6327,
+      detail: 'Stoke Bishop hall anchor on Parry’s Lane, northwest of the main Clifton campus.'
+    },
+    {
+      id: 'unite-city',
+      type: 'housing',
+      icon: '🏠',
+      label: 'Unite City',
+      name: 'Unite Students city-centre accommodation',
+      lat: 51.4558,
+      lng: -2.5989,
+      detail: 'City-centre private-hall anchor for Unite-style accommodation near the shopping / harbourside area.'
+    },
+    {
+      id: 'redland-cotham',
+      type: 'housing',
+      icon: '🏠',
+      label: 'Redland / Cotham',
+      name: 'Redland / Cotham private rentals',
+      lat: 51.4673,
+      lng: -2.6031,
+      detail: 'Popular student rental area north of campus with walk, bus and cycle links.'
+    },
+    {
+      id: 'easton-stwerburghs',
+      type: 'housing',
+      icon: '🏠',
+      label: 'Easton / St Werburghs',
+      name: 'Easton / St Werburghs rentals',
+      lat: 51.4702,
+      lng: -2.5725,
+      detail: 'Budget-friendly rental area east / north-east of the centre, usually reached by bike or bus.'
+    },
+    {
+      id: 'temple-meads',
+      type: 'transport',
+      icon: '🚌',
+      label: 'Temple Meads',
+      name: 'Bristol Temple Meads station',
+      lat: 51.4491,
+      lng: -2.5813,
+      detail: 'Main railway station and major transport interchange for Bristol.'
+    },
+    {
+      id: 'clifton-down-station',
+      type: 'transport',
+      icon: '🚌',
+      label: 'Clifton Down',
+      name: 'Clifton Down station',
+      lat: 51.464547,
+      lng: -2.611741,
+      detail: 'Rail station on Whiteladies Road, useful for Clifton, Redland and the Downs.'
+    },
+    {
+      id: 'u1-u2-route',
+      type: 'transport',
+      icon: '🚌',
+      label: 'U1/U2 Route',
+      name: 'U1/U2 Stoke Bishop route anchor',
+      lat: 51.4687,
+      lng: -2.6197,
+      detail: 'Approximate midpoint marker for the student bus link between Stoke Bishop halls and the Clifton campus.'
+    },
+    {
+      id: 'city-bus-links',
+      type: 'transport',
+      icon: '🚌',
+      label: 'City Bus Links',
+      name: 'Central Bristol bus links',
+      lat: 51.4545,
+      lng: -2.5879,
+      detail: 'Central Bristol anchor for common city bus connections and onward transport.'
+    }
+  ];
+
+  function getMapLabelPosition(lat, lng) {
+    const x = ((lng - BRISTOL_MAP_BOUNDS.west) / (BRISTOL_MAP_BOUNDS.east - BRISTOL_MAP_BOUNDS.west)) * 100;
+    const y = ((BRISTOL_MAP_BOUNDS.north - lat) / (BRISTOL_MAP_BOUNDS.north - BRISTOL_MAP_BOUNDS.south)) * 100;
+    return {
+      left: Math.min(96, Math.max(4, x)),
+      top: Math.min(96, Math.max(4, y))
+    };
+  }
+
+  function mapTypeClass(type) {
+    if (type === 'housing') return 'house';
+    if (type === 'transport') return 'transport';
+    return 'campus';
+  }
+
+  function mapTypeName(type) {
+    if (type === 'housing') return 'Housing';
+    if (type === 'transport') return 'Transport';
+    return 'Campus';
+  }
+
+  function renderGoogleMapLabels() {
+    const layer = document.getElementById('google-map-label-layer');
+    if (!layer) return;
+    layer.innerHTML = GOOGLE_MAP_LOCATIONS.map(location => {
+      const position = getMapLabelPosition(location.lat, location.lng);
+      const className = mapTypeClass(location.type);
+      return `<button class="map-label ${className}" type="button" data-map-id="${location.id}" data-map-type="${location.type}" style="left:${position.left.toFixed(2)}%;top:${position.top.toFixed(2)}%;" onclick="selectMapLocation('${location.id}')" title="${escapeHTML(location.name)} (${location.lat.toFixed(5)}, ${location.lng.toFixed(5)})"><span class="label-icon">${location.icon}</span><span class="label-text">${escapeHTML(location.label)}</span></button>`;
+    }).join('');
+  }
+
+  function selectMapLocation(locationId) {
+    const location = GOOGLE_MAP_LOCATIONS.find(item => item.id === locationId);
+    if (!location) return;
+
+    document.querySelectorAll('.map-label').forEach(label => {
+      label.classList.toggle('selected', label.dataset.mapId === locationId);
+    });
+
+    const detailCard = document.getElementById('map-detail-card');
+    if (!detailCard) return;
+    const googleUrl = `https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lng}`;
+    detailCard.innerHTML = `
+      <div class="map-detail-kicker">${location.icon} ${mapTypeName(location.type)}</div>
+      <div class="map-detail-name">${escapeHTML(location.name)}</div>
+      <div class="map-detail-copy">${escapeHTML(location.detail)}</div>
+      <div class="map-coordinates">Latitude: ${location.lat.toFixed(6)}<br>Longitude: ${location.lng.toFixed(6)}</div>
+      <div class="map-actions">
+        <a class="map-action-link primary" href="${googleUrl}" target="_blank" rel="noopener">Open in Google Maps →</a>
+        <a class="map-action-link" href="#${location.type === 'transport' ? 'transport' : location.type === 'housing' ? 'housing' : 'map'}">View related section</a>
+      </div>
+    `;
+  }
+
+  function filterGoogleMapLabels(btn, filter) {
+    document.querySelectorAll('.map-filter').forEach(item => item.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    document.querySelectorAll('.map-label').forEach(label => {
+      const type = label.dataset.mapType;
+      label.classList.toggle('faded', filter !== 'all' && type !== filter);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderGoogleMapLabels();
+  });
+
   // Scroll-based nav highlight
-  const sections = ['housing','transport','connections','chat'];
+  const sections = ['housing','transport','map','connections','chat'];
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(id => {
