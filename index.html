@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrizConnect</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #e63022;
+    --red-light: #ff4d3d;
+    --cream: #fdf6ed;
+    --dark: #1a1209;
+    --mid: #5c4a2a;
+    --accent: #f5a623;
+    --green: #2d9c5c;
+    --blue: #1d6fa4;
+    --tag-bg: #fff3e0;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.25rem;
+    color: #fff; letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 0.25rem; }
+  .nav-links a {
+    color: #ccc; text-decoration: none;
+    font-size: 0.85rem; font-weight: 500;
+    padding: 0.4rem 0.85rem; border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .nav-links a.active { background: var(--red); color: #fff; }
+  .nav-cta {
+    background: var(--accent); color: var(--dark);
+    border: none; padding: 0.45rem 1.1rem;
+    border-radius: 20px; font-weight: 600;
+    font-size: 0.85rem; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: transform 0.15s;
+  }
+  .nav-cta:hover { transform: scale(1.05); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark);
+    padding: 5rem 2rem 4rem;
+    position: relative; overflow: hidden;
+    text-align: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(230,48,34,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(245,166,35,0.15) 0%, transparent 50%);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.4);
+    color: var(--accent);
+    font-size: 0.75rem; font-weight: 600;
+    padding: 0.3rem 0.9rem; border-radius: 20px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: #fff; line-height: 1.05;
+    letter-spacing: -1.5px;
+    position: relative; margin-bottom: 1.25rem;
+  }
+  .hero h1 em { color: var(--red-light); font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.1rem; max-width: 540px;
+    margin: 0 auto 2rem; line-height: 1.65;
+    position: relative;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; position: relative; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--red); color: #fff;
+    padding: 0.75rem 1.75rem; border-radius: 8px;
+    font-weight: 600; font-size: 0.95rem;
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent; color: #fff;
+    padding: 0.75rem 1.75rem; border-radius: 8px;
+    font-weight: 500; font-size: 0.95rem;
+    border: 1px solid rgba(255,255,255,0.3); cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; justify-content: center;
+    margin-top: 3.5rem; position: relative;
+  }
+  .stat { text-align: center; }
+  .stat-n {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem; font-weight: 800;
+    color: #fff;
+  }
+  .stat-n span { color: var(--accent); }
+  .stat-l { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.15rem; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── SECTION SHELL ── */
+  .section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    letter-spacing: -0.5px; margin-bottom: 0.4rem;
+  }
+  .section-sub { color: var(--mid); font-size: 0.95rem; margin-bottom: 2.5rem; }
+  .pill-header {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--dark); color: #fff;
+    padding: 0.35rem 0.9rem; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .pill-header.red { background: var(--red); }
+  .pill-header.green { background: var(--green); }
+  .pill-header.blue { background: var(--blue); }
+
+  /* ── HOUSING CARDS ── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+
+  .housing-card {
+    background: #fff; border-radius: 16px;
+    overflow: hidden; border: 1px solid #ede5d8;
+    transition: all 0.25s; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .housing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+
+  .card-img {
+    height: 160px; position: relative; overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .card-img-bg {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+  }
+  .card-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,18,9,0.7) 0%, transparent 60%);
+  }
+  .card-img-price {
+    position: relative; z-index: 2;
+    padding: 0.75rem 1rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1.05rem; color: #fff;
+  }
+  .card-img-price small { font-size: 0.7rem; font-weight: 400; opacity: 0.8; }
+
+  .card-body { padding: 1.1rem 1.2rem 1.2rem; }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem;
+  }
+  .card-location { font-size: 0.8rem; color: var(--mid); margin-bottom: 0.85rem; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+  .tag {
+    background: var(--tag-bg);
+    color: #7a5c20;
+    font-size: 0.7rem; font-weight: 600;
+    padding: 0.25rem 0.6rem; border-radius: 6px;
+    white-space: nowrap;
+  }
+  .tag.good { background: #e6f5ec; color: #1a6e3d; }
+  .tag.warn { background: #fff3cd; color: #856404; }
+  .tag.info { background: #e8f1fb; color: #1d6fa4; }
+
+  .card-stars { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; }
+  .stars { color: var(--accent); letter-spacing: 1px; }
+  .review-count { color: #999; font-size: 0.75rem; }
+
+  .card-cta {
+    display: block; text-align: center;
+    background: var(--dark); color: #fff;
+    border-radius: 8px; padding: 0.6rem;
+    font-size: 0.82rem; font-weight: 600;
+    text-decoration: none; margin-top: 1rem;
+    transition: background 0.2s;
+  }
+  .card-cta:hover { background: var(--red); }
+
+  /* ── TRANSPORT SECTION ── */
+  .transport-bg { background: var(--dark); padding: 4rem 0; }
+  .transport-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .transport-inner .section-title { color: #fff; }
+  .transport-inner .section-sub { color: rgba(255,255,255,0.5); }
+
+  .transport-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+  .transport-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 1.4rem;
+    transition: all 0.25s;
+  }
+  .transport-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+  .t-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+  .t-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1.1rem;
+    color: #fff; margin-bottom: 0.4rem;
+  }
+  .t-desc { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 1rem; }
+  .t-tip {
+    background: rgba(245,166,35,0.12);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem; color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .t-link {
+    display: inline-block;
+    color: var(--accent); font-size: 0.82rem;
+    font-weight: 600; text-decoration: none;
+    border-bottom: 1px solid rgba(245,166,35,0.3);
+    transition: border-color 0.2s;
+  }
+  .t-link:hover { border-color: var(--accent); }
+
+  /* ── CONNECTIONS ── */
+  .connections-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+  .conn-card {
+    background: #fff; border: 1px solid #ede5d8;
+    border-radius: 14px; padding: 1.3rem;
+    transition: all 0.2s;
+  }
+  .conn-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .conn-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+  .conn-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem;
+  }
+  .conn-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.55; margin-bottom: 0.9rem; }
+  .conn-link {
+    font-size: 0.8rem; font-weight: 600;
+    color: var(--red); text-decoration: none;
+  }
+  .conn-link:hover { text-decoration: underline; }
+
+  /* ── THREADED VECTOR CHATROOM ── */
+  .chat-section {
+    background: #fff3e0;
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin: 2rem 0;
+    border: 1px solid #f0dfbd;
+  }
+  .chat-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem;
+  }
+  .chat-sub { font-size: 0.88rem; color: var(--mid); margin-bottom: 1.5rem; }
+  .chat-layout { display: grid; grid-template-columns: 280px 1fr; gap: 1rem; align-items: start; }
+  .vector-panel, .thread-composer, .thread-card {
+    background: #fff;
+    border: 1px solid #f0e5d0;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.035);
+  }
+  .vector-panel { padding: 1rem; position: sticky; top: 78px; }
+  .vector-head { display: flex; gap: 0.8rem; align-items: center; margin-bottom: 0.85rem; }
+  .vector-avatar {
+    width: 52px; height: 52px;
+    border-radius: 16px;
+    overflow: hidden;
+    flex: 0 0 auto;
+    border: 2px solid #f5dfb9;
+    background: #fff8ed;
+  }
+  .vector-avatar svg { width: 100%; height: 100%; display: block; }
+  .vector-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.95rem; }
+  .vector-role { font-size: 0.74rem; color: var(--mid); margin-top: 0.1rem; }
+  .vector-code {
+    background: #1a1209;
+    color: #fff;
+    border-radius: 12px;
+    padding: 0.8rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    word-break: break-word;
+    margin-bottom: 0.75rem;
+  }
+  .vector-note { font-size: 0.74rem; color: var(--mid); line-height: 1.55; margin-bottom: 0.85rem; }
+  .vector-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .mini-btn {
+    border: 1px solid #e6d5b8;
+    background: #fff8ed;
+    border-radius: 10px;
+    padding: 0.55rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+  }
+  .mini-btn:hover { border-color: var(--accent); background: #fff3e0; }
+  .thread-column { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+  .thread-composer { padding: 1rem; }
+  .composer-grid { display: grid; grid-template-columns: 1fr 150px; gap: 0.7rem; margin-bottom: 0.7rem; }
+  .chat-input, .chat-select, .chat-textarea {
+    width: 100%;
+    padding: 0.72rem 0.85rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    outline: none;
+    background: #fff;
+  }
+  .chat-textarea { resize: vertical; min-height: 86px; line-height: 1.5; }
+  .chat-input:focus, .chat-select:focus, .chat-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(245,166,35,0.12); }
+  .chat-send {
+    background: var(--red); color: #fff;
+    border: none; padding: 0.72rem 1.15rem;
+    border-radius: 10px; font-weight: 700;
+    font-size: 0.88rem; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .chat-send:hover { background: var(--red-light); transform: translateY(-1px); }
+  .composer-footer { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+  .composer-hint { font-size: 0.74rem; color: var(--mid); }
+  .thread-tools { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.15rem; }
+  .thread-filter {
+    border: 1px solid #e6d5b8;
+    background: #fff;
+    color: var(--mid);
+    border-radius: 999px;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .thread-filter.active, .thread-filter:hover { background: var(--dark); border-color: var(--dark); color: #fff; }
+  .thread-card { padding: 1rem; }
+  .thread-top { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; margin-bottom: 0.75rem; }
+  .thread-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; margin-bottom: 0.25rem; }
+  .thread-meta { display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; font-size: 0.72rem; color: #897456; }
+  .thread-tag {
+    background: var(--tag-bg);
+    color: #7a5c20;
+    border-radius: 999px;
+    padding: 0.18rem 0.5rem;
+    font-weight: 800;
+  }
+  .reply-count { background: #f5f0e8; border-radius: 999px; padding: 0.32rem 0.62rem; font-size: 0.72rem; font-weight: 800; white-space: nowrap; }
+  .thread-messages { display: flex; flex-direction: column; gap: 0.65rem; }
+  .chat-msg {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 0.7rem;
+    background: #fffaf2;
+    border: 1px solid #f0e5d0;
+    border-radius: 14px;
+    padding: 0.78rem;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  .chat-msg.reply { margin-left: 2rem; background: #fff; }
+  .msg-avatar { width: 42px; height: 42px; border-radius: 13px; overflow: hidden; border: 1px solid #f0dfbd; background: #fff; }
+  .msg-avatar svg { width: 100%; height: 100%; display: block; }
+  .msg-head { display: flex; gap: 0.45rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.25rem; }
+  .msg-author { font-weight: 800; font-size: 0.78rem; color: var(--dark); }
+  .vector-pill {
+    background: #1a1209;
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.12rem 0.45rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.65rem;
+    font-weight: 800;
+  }
+  .msg-time { color: #a39278; font-size: 0.72rem; }
+  .msg-body { color: #4e3c24; }
+  .reply-box { display: grid; grid-template-columns: 1fr auto; gap: 0.6rem; margin-top: 0.85rem; }
+  .empty-threads { background: #fff; border: 1px dashed #e1cda8; border-radius: 14px; padding: 1rem; color: var(--mid); font-size: 0.86rem; }
+  @media (max-width: 800px) {
+    .chat-layout { grid-template-columns: 1fr; }
+    .vector-panel { position: static; }
+    .composer-grid { grid-template-columns: 1fr; }
+    .chat-msg.reply { margin-left: 0.75rem; }
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .filter-btn {
+    background: #fff; border: 1px solid #ddd;
+    border-radius: 20px; padding: 0.4rem 0.9rem;
+    font-size: 0.8rem; font-weight: 500;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--dark); color: #fff; border-color: var(--dark);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark); color: rgba(255,255,255,0.45);
+    text-align: center; padding: 2rem;
+    font-size: 0.8rem; line-height: 1.8;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6); z-index: 200;
+    align-items: center; justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff; border-radius: 20px;
+    max-width: 520px; width: 100%;
+    padding: 2rem; position: relative;
+    max-height: 85vh; overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: #f0e5d0; border: none;
+    width: 32px; height: 32px; border-radius: 50%;
+    cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem; font-weight: 800; margin-bottom: 0.25rem;
+  }
+  .modal-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem; font-weight: 800;
+    color: var(--red); margin: 0.5rem 0 1rem;
+  }
+  .modal-price small { font-size: 0.85rem; font-weight: 400; color: var(--mid); }
+  .modal-section { margin: 1.2rem 0; }
+  .modal-section h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin-bottom: 0.5rem; }
+  .modal-row { display: flex; justify-content: space-between; font-size: 0.88rem; padding: 0.35rem 0; border-bottom: 1px solid #f5f0e8; }
+  .modal-row span:last-child { font-weight: 600; }
+  .good-text { color: var(--green); }
+  .warn-text { color: #c77b00; }
+
+  /* ── BANNER ── */
+  .info-banner {
+    background: linear-gradient(135deg, var(--red) 0%, #c0271a 100%);
+    color: #fff; padding: 1rem 2rem;
+    text-align: center; font-size: 0.88rem;
+  }
+  .info-banner a { color: var(--accent); font-weight: 600; text-decoration: none; }
+
+  /* ── ANIMATE ── */
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(20px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+  .fadeup { animation: fadeUp 0.5s ease both; }
+  .delay1 { animation-delay: 0.1s; }
+  .delay2 { animation-delay: 0.2s; }
+  .delay3 { animation-delay: 0.3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BANNER -->
+<div class="info-banner">
+  🎓 Made by UoB students, for UoB students — <a href="#connections">join the conversation →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Briz<span>Connect</span></div>
+  <div class="nav-links">
+    <a href="#housing" class="active">Housing</a>
+    <a href="#transport">Transport</a>
+    <a href="#connections">Connections</a>
+    <a href="#chat">Chat</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">💬 Join Chat</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">BrizConnect — Beta</div>
+  <h1>Find your place.<br><em>Navigate your city.</em></h1>
+  <p>Housing, transport & student life — all the info you actually need, without the fluff. Made by students who've been there.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('housing').scrollIntoView({behavior:'smooth'})">🏠 Find Housing</button>
+    <button class="btn-ghost" onclick="document.getElementById('transport').scrollIntoView({behavior:'smooth'})">🚌 Transport Guide</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">10<span>+</span></div><div class="stat-l">Guides</div></div>
+    <div class="stat"><div class="stat-n">50<span>+</span></div><div class="stat-l">Reviews</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Campuses</div></div>
+    <div class="stat"><div class="stat-n">1</div><div class="stat-l">Community</div></div>
+  </div>
+</section>
+
+<!-- HOUSING -->
+<section class="section" id="housing">
+  <div class="pill-header red">🏠 Housing</div>
+  <h2 class="section-title fadeup">Find the right place to live</h2>
+  <p class="section-sub fadeup delay1">UoB halls, private halls & rentals — prices, bills, transport and honest reviews, all in one place.</p>
+
+  <div class="filter-bar fadeup delay2">
+    <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
+    <button class="filter-btn" onclick="setFilter(this,'uob')">UoB Halls</button>
+    <button class="filter-btn" onclick="setFilter(this,'private-hall')">Private Halls</button>
+    <button class="filter-btn" onclick="setFilter(this,'rental')">Private Rental</button>
+    <button class="filter-btn" onclick="setFilter(this,'bills-included')">Bills Included</button>
+    <button class="filter-btn" onclick="setFilter(this,'parking')">Has Parking</button>
+  </div>
+
+  <div class="card-grid" id="housing-grid">
+
+    <div class="housing-card fadeup" data-tags="uob bills-included">
+      <div class="card-img" style="background: linear-gradient(135deg,#1a3a5c,#2d6fa4);">
+        <div class="card-img-bg">🏛️</div>
+        <div class="card-img-overlay"></div>
+        <div class="card-img-price">£160–£210 <small>/week</small></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Accommodation at 33 (UoB)</div>
+        <div class="card-location">📍 Stoke Bishop, 20 min to campus</div>
+        <div class="tag-row">
+          <span class="tag good">✅ Bills Included</span>
+          <span class="tag info">🚌 Bus Route</span>
+          <span class="tag warn">❌ No Parking</span>
+          <span class="tag good">🍽️ Catered Option</span>
+          <span class="tag">No Guarantor</span>
+        </div>
+        <div class="card-stars">
+          <span class="stars">★★★★☆</span>
+          <span>4.1</span>
+          <span class="review-count">(38 student reviews)</span>
+        </div>
+        <a class="card-cta" href="https://www.bristol.ac.uk/accommodation/about/residences/accommodation-at-thirty-three/" target="_blank">View Details →</a>
+      </div>
+    </div>
+
+    <div class="housing-card fadeup delay1" data-tags="uob bills-included">
+      <div class="card-img" style="background: linear-gradient(135deg,#1a4c2a,#2d9c5c);">
+        <div class="card-img-bg">🌿</div>
+        <div class="card-img-overlay"></div>
+        <div class="card-img-price">£145–£185 <small>/week</small></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Clifton Hill House (UoB)</div>
+        <div class="card-location">📍 Clifton, 10 min walk to campus</div>
+        <div class="tag-row">
+          <span class="tag good">✅ Bills Included</span>
+          <span class="tag good">🚶 Walk to Campus</span>
+          <span class="tag warn">❌ No Parking</span>
+          <span class="tag good">🍽️ Catered</span>
+          <span class="tag">No Guarantor</span>
+        </div>
+        <div class="card-stars">
+          <span class="stars">★★★★★</span>
+          <span>4.6</span>
+          <span class="review-count">(52 student reviews)</span>
+        </div>
+        <a class="card-cta" href="https://www.bristol.ac.uk/students/life-in-bristol/accommodation/university-accommodation/moving-in/what-to-bring/" target="_blank">View Details →</a>
+      </div>
+    </div>
+
+    <div class="housing-card fadeup delay2" data-tags="private-hall bills-included parking">
+      <div class="card-img" style="background: linear-gradient(135deg,#4a1a5c,#9c2d9c);">
+        <div class="card-img-bg">🏢</div>
+        <div class="card-img-overlay"></div>
+        <div class="card-img-price">£175–£250 <small>/week</small></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Unite Students – Bristol</div>
+        <div class="card-location">📍 City Centre, near Temple Meads</div>
+        <div class="tag-row">
+          <span class="tag good">✅ Bills Included</span>
+          <span class="tag good">🅿️ Parking Available</span>
+          <span class="tag info">🚂 Train Nearby</span>
+          <span class="tag warn">⚠️ Guarantor Needed</span>
+        </div>
+        <div class="card-stars">
+          <span class="stars">★★★☆☆</span>
+          <span>3.4</span>
+          <span class="review-count">(29 student reviews)</span>
+        </div>
+        <a class="card-cta" href="#" onclick="openModal('unite');return false;">View Details →</a>
+      </div>
+    </div>
+
+    <div class="housing-card fadeup" data-tags="rental parking">
+      <div class="card-img" style="background: linear-gradient(135deg,#5c3a1a,#c77b00);">
+        <div class="card-img-bg">🏡</div>
+        <div class="card-img-overlay"></div>
+        <div class="card-img-price">£95–£140 <small>/week</small></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Private Rental – Redland / Cotham</div>
+        <div class="card-location">📍 Redland, 15 min cycle to campus</div>
+        <div class="tag-row">
+          <span class="tag warn">⚡ Bills Extra</span>
+          <span class="tag good">🅿️ Street Parking</span>
+          <span class="tag warn">⚠️ Guarantor Needed</span>
+          <span class="tag info">🚌 Bus 8/9</span>
+        </div>
+        <div class="card-stars">
+          <span class="stars">★★★★☆</span>
+          <span>4.0</span>
+          <span class="review-count">(14 student reviews)</span>
+        </div>
+        <a class="card-cta" href="https://www.rightmove.co.uk/property-to-rent/find.html?searchLocation=Bristol%2C+BS6&locationIdentifier=REGION%5E219&maxBedrooms=5&minBedrooms=2" target="_blank">View on RightMove →</a>
+      </div>
+    </div>
+
+    <div class="housing-card fadeup delay1" data-tags="rental">
+      <div class="card-img" style="background: linear-gradient(135deg,#1a4a5c,#2d9ca0);">
+        <div class="card-img-bg">🏘️</div>
+        <div class="card-img-overlay"></div>
+        <div class="card-img-price">£90–£130 <small>/week</small></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Private Rental – Easton / St Werburghs</div>
+        <div class="card-location">📍 Easton, 20 min bike to campus</div>
+        <div class="tag-row">
+          <span class="tag warn">⚡ Bills Extra</span>
+          <span class="tag good">💰 Budget Friendly</span>
+          <span class="tag warn">⚠️ Guarantor Needed</span>
+          <span class="tag info">🚌 Bus 5/5A</span>
+        </div>
+        <div class="card-stars">
+          <span class="stars">★★★☆☆</span>
+          <span>3.6</span>
+          <span class="review-count">(9 student reviews)</span>
+        </div>
+        <a class="card-cta" href="https://www.rightmove.co.uk/property-to-rent/find.html?searchLocation=Easton%2C+Bristol&locationIdentifier=REGION%5E219" target="_blank">View on RightMove →</a>
+      </div>
+    </div>
+
+    <div class="housing-card fadeup delay2" data-tags="uob bills-included">
+      <div class="card-img" style="background: linear-gradient(135deg,#5c1a1a,#e63022);">
+        <div class="card-img-bg">🎓</div>
+        <div class="card-img-overlay"></div>
+        <div class="card-img-price">£130–£170 <small>/week</small></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Hiatt Baker Hall (UoB)</div>
+        <div class="card-location">📍 Stoke Bishop, 25 min to campus</div>
+        <div class="tag-row">
+          <span class="tag good">✅ Bills Included</span>
+          <span class="tag info">🚌 Free UoB Bus</span>
+          <span class="tag warn">❌ No Parking</span>
+          <span class="tag">No Guarantor</span>
+        </div>
+        <div class="card-stars">
+          <span class="stars">★★★★☆</span>
+          <span>4.2</span>
+          <span class="review-count">(61 student reviews)</span>
+        </div>
+        <a class="card-cta" href="https://www.bristol.ac.uk/students/life-in-bristol/accommodation/" target="_blank">View Details →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<div class="transport-bg" id="transport">
+  <div class="transport-inner">
+    <div class="pill-header" style="background:rgba(255,255,255,0.1);color:#fff;">🚌 Transport</div>
+    <h2 class="section-title">Getting around Bristol</h2>
+    <p class="section-sub">Everything you need to know — buses, trains, taxis. Real talk, no spin.</p>
+
+    <div class="transport-grid">
+
+      <div class="transport-card">
+        <div class="t-icon">🚌</div>
+        <div class="t-title">First Bus – City Routes</div>
+        <div class="t-desc">Key routes to Clifton, Stoke Bishop & city centre. The U1/U2 are your main UoB routes — get a student bus pass to save big.</div>
+        <div class="t-tip">⚠️ Buses run late &amp; cancel often — leave 10 min early, always. Seriously.</div>
+        <a class="t-link" href="https://www.firstbus.co.uk/bristol-bath-and-west" target="_blank">First Bus routes & passes →</a>
+      </div>
+
+      <div class="transport-card">
+        <div class="t-icon">🚂</div>
+        <div class="t-title">Trains – Temple Meads & Clifton Down</div>
+        <div class="t-desc">Bristol Temple Meads is the main hub. Clifton Down station is handy for the Downs area. Use 16–25 Railcard + Trainline for cheapest fares.</div>
+        <div class="t-tip">🎟️ Book advance tickets on Trainline for big savings vs walking up.</div>
+        <a class="t-link" href="https://www.trainline.com" target="_blank">Trainline →</a>&nbsp;&nbsp;
+        <a class="t-link" href="https://travelwest.info" target="_blank">Travel West →</a>
+      </div>
+
+      <div class="transport-card">
+        <div class="t-icon">🚖</div>
+        <div class="t-title">Taxi &amp; Uber</div>
+        <div class="t-desc">Uber is widely available across Bristol. Licensed black cabs available at Temple Meads. Arrow Cars is a popular local firm — often cheaper late night.</div>
+        <div class="t-tip">💡 Split Uber with flatmates after nights out — saves everyone.</div>
+        <a class="t-link" href="https://www.uber.com/gb/en/ride/" target="_blank">Uber Bristol →</a>
+      </div>
+
+      <div class="transport-card">
+        <div class="t-icon">🚲</div>
+        <div class="t-title">Cycling &amp; Scooting</div>
+        <div class="t-desc">Bristol has decent cycle lanes. Voi &amp; Tier e-scooters are available with student discounts. Cycling from Redland to campus takes ~15 mins.</div>
+        <div class="t-tip">🔒 Invest in a good D-lock — bike theft is common in the city.</div>
+        <a class="t-link" href="https://www.voi.com/en/cities/bristol/" target="_blank">Voi e-scooters →</a>
+      </div>
+
+      <div class="transport-card">
+        <div class="t-icon">🗺️</div>
+        <div class="t-title">Key Campus Connections</div>
+        <div class="t-desc">Main campus: U1/U2 buses. Langford (vet): X5 from Temple Meads. Frenchay (UWE): no.17 bus. Free UoB shuttle from Stoke Bishop halls.</div>
+        <div class="t-tip">📱 Download the First Bus app — live tracking is a lifesaver.</div>
+        <a class="t-link" href="https://www.bristol.ac.uk/students/life-in-bristol/getting-around/" target="_blank">UoB getting around guide →</a>
+      </div>
+
+      <div class="transport-card">
+        <div class="t-icon">🅿️</div>
+        <div class="t-title">Parking in Bristol</div>
+        <div class="t-desc">City centre parking is expensive. Resident permit zones cover most student areas. If your accommodation has parking — use it. Park &amp; Ride from the edges is cheaper.</div>
+        <div class="t-tip">🚗 Most UoB halls don't allow cars in 1st year. Check your contract!</div>
+        <a class="t-link" href="https://www.bristol.gov.uk/parking-travel-transport" target="_blank">Bristol parking info →</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- STUDENT CONNECTIONS -->
+<section class="section" id="connections">
+  <div class="pill-header green">🤝 Student Connections</div>
+  <h2 class="section-title">You're not alone</h2>
+  <p class="section-sub">Resources, discounts and communities to help you settle in.</p>
+
+  <div class="connections-grid">
+    <div class="conn-card">
+      <div class="conn-icon">🏫</div>
+      <div class="conn-title">UoB Students' Union</div>
+      <div class="conn-desc">200+ societies, sports clubs, welfare officers and campaigns. Your SU is your biggest ally at uni.</div>
+      <a class="conn-link" href="https://www.bristolsu.org.uk" target="_blank">bristolsu.org.uk →</a>
+    </div>
+    <div class="conn-card">
+      <div class="conn-icon">🎙️</div>
+      <div class="conn-title">Bristol Voices</div>
+      <div class="conn-desc">Peer-to-peer stories from UoB students and alumni — real experiences, real advice about Bristol life.</div>
+      <a class="conn-link" href="https://www.bristol.ac.uk/alumni/get-involved/bristol-voices-/" target="_blank">Read Bristol Voices →</a>
+    </div>
+    <div class="conn-card">
+      <div class="conn-icon">🤝</div>
+      <div class="conn-title">Guarantor Info</div>
+      <div class="conn-desc">International or first-gen student? Most private rentals need a UK guarantor. Learn your options — Housing Hand, UK Guarantor Service and more.</div>
+      <a class="conn-link" href="https://www.bristol.ac.uk/students/life-in-bristol/accommodation/private-accommodation/guarantors/" target="_blank">UoB Guarantor Guide →</a>
+    </div>
+    <div class="conn-card">
+      <div class="conn-icon">💳</div>
+      <div class="conn-title">Student Discounts</div>
+      <div class="conn-desc">Hundreds of deals from ASOS, Apple, Domino's and more. Download both apps — different deals on each.</div>
+      <a class="conn-link" href="https://www.studentbeans.com" target="_blank">Student Beans →</a>&nbsp;
+      <a class="conn-link" href="https://www.myunidays.com" target="_blank">UNiDAYS →</a>
+    </div>
+    <div class="conn-card">
+      <div class="conn-icon">💰</div>
+      <div class="conn-title">Student Finances</div>
+      <div class="conn-desc">Bursaries, hardship funds, money management tools — UoB has more financial support than most students realise.</div>
+      <a class="conn-link" href="https://www.bristol.ac.uk/students/support/finances/" target="_blank">UoB Finance Support →</a>
+    </div>
+    <div class="conn-card">
+      <div class="conn-icon">📲</div>
+      <div class="conn-title">Social — Stay Connected</div>
+      <div class="conn-desc">Follow <strong>@BristolFreshers</strong> on Instagram for freshers events. Tag <strong>#ThinkBig</strong> to share your experience.</div>
+      <a class="conn-link" href="https://www.instagram.com/bristolfreshers" target="_blank">Instagram →</a>
+    </div>
+  </div>
+</section>
+
+<!-- THREADED VECTOR CHATROOM -->
+<section class="section" id="chat">
+  <div class="pill-header blue">💬 Student Chat</div>
+  <h2 class="section-title">Threaded Anonymous Q&amp;A</h2>
+  <p class="section-sub">Ask anything about housing or transport. Each browser gets a persistent anonymous vector profile for replies and thread identity.</p>
+
+  <div class="chat-section">
+    <div class="chat-title">🧵 Community Threads</div>
+    <div class="chat-sub">Anonymous · Threaded replies · Local demo storage · No personal data required</div>
+
+    <div class="chat-layout">
+      <aside class="vector-panel" aria-label="Your anonymous vector identity">
+        <div class="vector-head">
+          <div class="vector-avatar" id="current-vector-avatar"></div>
+          <div>
+            <div class="vector-name" id="current-vector-name">Anonymous Vector</div>
+            <div class="vector-role" id="current-vector-role">Student participant</div>
+          </div>
+        </div>
+        <div class="vector-code" id="current-vector-code">Vector loading…</div>
+        <p class="vector-note">Your vector is randomly generated and saved in this browser. It helps others recognise the same anonymous user across threads without using names or emails.</p>
+        <div class="vector-actions">
+          <button class="mini-btn" type="button" onclick="copyVectorId()">Copy Vector</button>
+          <button class="mini-btn" type="button" onclick="resetVectorUser()">New Vector</button>
+        </div>
+      </aside>
+
+      <div class="thread-column">
+        <div class="thread-composer">
+          <div class="composer-grid">
+            <input class="chat-input" id="thread-title-input" type="text" maxlength="80" placeholder="Thread title, e.g. Is Redland good for second year?">
+            <select class="chat-select" id="thread-category-input" aria-label="Thread category">
+              <option>Housing</option>
+              <option>Transport</option>
+              <option>Freshers</option>
+              <option>International</option>
+              <option>Money</option>
+            </select>
+          </div>
+          <textarea class="chat-textarea" id="thread-body-input" maxlength="500" placeholder="Start a thread or ask a question anonymously..."></textarea>
+          <div class="composer-footer">
+            <span class="composer-hint">Posts are stored locally in this prototype. Refreshing keeps your demo threads on this device.</span>
+            <button class="chat-send" type="button" onclick="startThread()">Start Thread</button>
+          </div>
+        </div>
+
+        <div class="thread-tools" aria-label="Filter chat threads">
+          <button class="thread-filter active" type="button" onclick="filterThreads(this,'all')">All</button>
+          <button class="thread-filter" type="button" onclick="filterThreads(this,'Housing')">Housing</button>
+          <button class="thread-filter" type="button" onclick="filterThreads(this,'Transport')">Transport</button>
+          <button class="thread-filter" type="button" onclick="filterThreads(this,'International')">International</button>
+          <button class="thread-filter" type="button" onclick="filterThreads(this,'Money')">Money</button>
+        </div>
+
+        <div id="thread-list" class="thread-list" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL (example for Unite Students) -->
+<div class="modal-overlay" id="modal-unite" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-unite').classList.remove('open')">✕</button>
+    <div style="font-size:2rem;margin-bottom:0.5rem;">🏢</div>
+    <div class="modal-title">Unite Students – Bristol</div>
+    <div style="font-size:0.8rem;color:#999;margin-bottom:0.5rem;">📍 City Centre, near Temple Meads</div>
+    <div class="modal-price">£175–£250 <small>/week</small></div>
+
+    <div class="modal-section">
+      <h4>Key Details</h4>
+      <div class="modal-row"><span>Bills</span><span class="good-text">✅ Included</span></div>
+      <div class="modal-row"><span>Catering</span><span class="warn-text">Self-catered only</span></div>
+      <div class="modal-row"><span>Parking</span><span class="good-text">✅ Available (extra cost)</span></div>
+      <div class="modal-row"><span>Furnished</span><span class="good-text">✅ Fully furnished</span></div>
+      <div class="modal-row"><span>Guarantor</span><span class="warn-text">⚠️ UK guarantor required</span></div>
+    </div>
+
+    <div class="modal-section">
+      <h4>Nearby Transport</h4>
+      <div class="modal-row"><span>Bus</span><span>Routes 1, 2, 8, 75</span></div>
+      <div class="modal-row"><span>Train</span><span>Temple Meads (8 min walk)</span></div>
+      <div class="modal-row"><span>UoB Campus</span><span>~25 min by bus</span></div>
+    </div>
+
+    <div class="modal-section">
+      <h4>Student Reviews</h4>
+      <div style="font-size:0.85rem;line-height:1.6;color:#555;background:#f9f5ef;padding:0.85rem;border-radius:8px;">
+        "Location is amazing but you pay for it. Noise from Temple Meads area can be an issue. Good for people who like being in the city buzz." — 3rd year student
+      </div>
+    </div>
+
+    <a href="https://www.unite-students.com/bristol" target="_blank" style="display:block;text-align:center;background:var(--red);color:#fff;border-radius:8px;padding:0.75rem;font-weight:600;text-decoration:none;margin-top:1.25rem;">Visit Unite Students Website →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:0.5rem;">Bristol<span style="color:#f5a623;">Hub</span></div>
+  Made by UoB students as part of the <strong style="color:#fff;">ThinkBig</strong> programme.<br>
+  Not an official University of Bristol resource — always verify details directly with providers.<br>
+  <br>
+  <a href="https://www.bristol.ac.uk/students/life-in-bristol/accommodation/">UoB Accommodation</a> &nbsp;·&nbsp;
+  <a href="https://www.bristol.ac.uk/alumni/get-involved/bristol-voices-/">Bristol Voices</a> &nbsp;·&nbsp;
+  <a href="https://www.bristolsu.org.uk">Students' Union</a>
+  <br><br>
+  <span style="opacity:0.4;font-size:0.7rem;">Prototype v0.2 — Threaded vector chat demo · Day 6 presentation ready</span>
+</footer>
+
+<script>
+  // Filter housing cards
+  function setFilter(btn, tag) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.housing-card').forEach(card => {
+      if (tag === 'all' || card.dataset.tags.includes(tag)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Modal
+  function openModal(id) {
+    document.getElementById('modal-' + id).classList.add('open');
+  }
+  function closeModal(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+      e.target.classList.remove('open');
+    }
+  }
+
+  // Threaded vector chat
+  const VECTOR_USER_KEY = 'brizconnect.vectorUser.v1';
+  const THREADS_KEY = 'brizconnect.threadedChat.v1';
+  let activeThreadFilter = 'all';
+
+  const demoAuthors = [
+    { name: 'Anonymous Student', role: 'Verified UoB', vector: [0.72, -0.31, 0.44, 0.18], vectorId: 'VX-72A-31N-44A-18A' },
+    { name: 'Anon 2nd Year', role: '2nd Year', vector: [-0.24, 0.86, 0.11, -0.58], vectorId: 'VX-24N-86A-11A-58N' },
+    { name: 'International Anon', role: 'International', vector: [0.39, 0.15, -0.76, 0.51], vectorId: 'VX-39A-15A-76N-51A' }
+  ];
+
+  function randomVector() {
+    return Array.from({ length: 4 }, () => Number((Math.random() * 2 - 1).toFixed(2)));
+  }
+
+  function vectorIdFromVector(vector) {
+    return 'VX-' + vector.map(value => {
+      const sign = value < 0 ? 'N' : 'A';
+      return String(Math.round(Math.abs(value) * 100)).padStart(2, '0') + sign;
+    }).join('-');
+  }
+
+  function vectorHue(vector) {
+    const raw = (vector[0] * 137 + vector[1] * 89 + vector[2] * 53 + vector[3] * 29) * 100;
+    return Math.abs(Math.round(raw)) % 360;
+  }
+
+  function vectorAvatar(vector, label = '') {
+    const hue = vectorHue(vector);
+    const x1 = 18 + Math.abs(Math.round(vector[0] * 38));
+    const y1 = 18 + Math.abs(Math.round(vector[1] * 38));
+    const x2 = 82 - Math.abs(Math.round(vector[2] * 32));
+    const y2 = 82 - Math.abs(Math.round(vector[3] * 32));
+    const safeLabel = escapeHTML(label.slice(0, 2).toUpperCase() || 'V');
+    return `<svg viewBox="0 0 100 100" role="img" aria-label="${safeLabel} vector avatar" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g${hue}" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stop-color="hsl(${hue},75%,55%)"/>
+          <stop offset="100%" stop-color="hsl(${(hue + 70) % 360},78%,62%)"/>
+        </linearGradient>
+      </defs>
+      <rect width="100" height="100" rx="24" fill="url(#g${hue})"/>
+      <path d="M${x1} ${y1} C 40 8, 60 92, ${x2} ${y2}" fill="none" stroke="rgba(255,255,255,0.72)" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="${x1}" cy="${y1}" r="11" fill="rgba(255,255,255,0.88)"/>
+      <circle cx="${x2}" cy="${y2}" r="8" fill="rgba(26,18,9,0.46)"/>
+      <text x="50" y="58" text-anchor="middle" font-family="Syne, Arial" font-size="25" font-weight="800" fill="white">${safeLabel}</text>
+    </svg>`;
+  }
+
+  function createVectorUser() {
+    const vector = randomVector();
+    const suffix = Math.floor(100 + Math.random() * 900);
+    return {
+      name: `Anon Vector ${suffix}`,
+      role: 'Student participant',
+      vector,
+      vectorId: vectorIdFromVector(vector),
+      createdAt: new Date().toISOString()
+    };
+  }
+
+  function getVectorUser() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(VECTOR_USER_KEY));
+      if (saved && saved.vector && saved.vectorId) return saved;
+    } catch (err) {}
+    const user = createVectorUser();
+    localStorage.setItem(VECTOR_USER_KEY, JSON.stringify(user));
+    return user;
+  }
+
+  function saveVectorUser(user) {
+    localStorage.setItem(VECTOR_USER_KEY, JSON.stringify(user));
+  }
+
+  function defaultThreads() {
+    return [
+      {
+        id: makeId('thread'),
+        title: 'Is Hiatt Baker good for first year?',
+        category: 'Housing',
+        createdAt: new Date(Date.now() - 1000 * 60 * 34).toISOString(),
+        messages: [
+          makeMessage('Hiatt Baker is honestly great for first year — the UoB bus is right outside and it is easy to meet people. It can get noisy on weekends though 😅', demoAuthors[0], false, Date.now() - 1000 * 60 * 34),
+          makeMessage('Agree. The bus link helps a lot, but budget extra time when everyone leaves at once for lectures.', demoAuthors[1], true, Date.now() - 1000 * 60 * 19)
+        ]
+      },
+      {
+        id: makeId('thread'),
+        title: 'How reliable are First Bus routes near campus?',
+        category: 'Transport',
+        createdAt: new Date(Date.now() - 1000 * 60 * 58).toISOString(),
+        messages: [
+          makeMessage('First Bus cancelled on me four times in one week. Download the app and always check live tracking before leaving the house.', demoAuthors[1], false, Date.now() - 1000 * 60 * 58),
+          makeMessage('Leave 10 minutes earlier than you think. The app is not perfect, but it is still better than guessing.', demoAuthors[0], true, Date.now() - 1000 * 60 * 41)
+        ]
+      },
+      {
+        id: makeId('thread'),
+        title: 'Guarantor options for international students',
+        category: 'International',
+        createdAt: new Date(Date.now() - 1000 * 60 * 90).toISOString(),
+        messages: [
+          makeMessage('For international students needing a guarantor — Housing Hand can work, but ask your department and accommodation office first in case support is available.', demoAuthors[2], false, Date.now() - 1000 * 60 * 90)
+        ]
+      }
+    ];
+  }
+
+  function makeId(prefix) {
+    return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  }
+
+  function makeMessage(text, author, isReply = false, time = Date.now()) {
+    return {
+      id: makeId('msg'),
+      text,
+      isReply,
+      createdAt: new Date(time).toISOString(),
+      authorName: author.name,
+      authorRole: author.role,
+      vector: author.vector,
+      vectorId: author.vectorId
+    };
+  }
+
+  function getThreads() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(THREADS_KEY));
+      if (Array.isArray(saved)) return saved;
+    } catch (err) {}
+    const threads = defaultThreads();
+    saveThreads(threads);
+    return threads;
+  }
+
+  function saveThreads(threads) {
+    localStorage.setItem(THREADS_KEY, JSON.stringify(threads));
+  }
+
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>'"]/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    }[char]));
+  }
+
+  function formatTime(isoString) {
+    const date = new Date(isoString);
+    const minutes = Math.floor((Date.now() - date.getTime()) / 60000);
+    if (minutes < 1) return 'Just now';
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h ago`;
+    return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  }
+
+  function renderVectorPanel() {
+    const user = getVectorUser();
+    const avatarEl = document.getElementById('current-vector-avatar');
+    const nameEl = document.getElementById('current-vector-name');
+    const roleEl = document.getElementById('current-vector-role');
+    const codeEl = document.getElementById('current-vector-code');
+    if (!avatarEl || !nameEl || !roleEl || !codeEl) return;
+    avatarEl.innerHTML = vectorAvatar(user.vector, user.name);
+    nameEl.textContent = user.name;
+    roleEl.textContent = user.role;
+    codeEl.textContent = `${user.vectorId}\n[${user.vector.map(n => n.toFixed(2)).join(', ')}]`;
+  }
+
+  function renderThreads() {
+    const list = document.getElementById('thread-list');
+    if (!list) return;
+    const threads = getThreads()
+      .filter(thread => activeThreadFilter === 'all' || thread.category === activeThreadFilter)
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    if (!threads.length) {
+      list.innerHTML = '<div class="empty-threads">No threads match this filter yet. Start one above.</div>';
+      return;
+    }
+
+    list.innerHTML = threads.map(thread => `
+      <article class="thread-card" data-category="${escapeHTML(thread.category)}">
+        <div class="thread-top">
+          <div>
+            <div class="thread-title">${escapeHTML(thread.title)}</div>
+            <div class="thread-meta">
+              <span class="thread-tag">${escapeHTML(thread.category)}</span>
+              <span>Started ${formatTime(thread.createdAt)}</span>
+            </div>
+          </div>
+          <div class="reply-count">${thread.messages.length} ${thread.messages.length === 1 ? 'post' : 'posts'}</div>
+        </div>
+        <div class="thread-messages">
+          ${thread.messages.map(message => renderMessage(message)).join('')}
+        </div>
+        <div class="reply-box">
+          <input class="chat-input" id="reply-${thread.id}" type="text" maxlength="360" placeholder="Reply to this thread with your vector identity...">
+          <button class="chat-send" type="button" onclick="addReply('${thread.id}')">Reply</button>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  function renderMessage(message) {
+    return `
+      <div class="chat-msg ${message.isReply ? 'reply' : ''}">
+        <div class="msg-avatar">${vectorAvatar(message.vector, message.authorName)}</div>
+        <div>
+          <div class="msg-head">
+            <span class="msg-author">${escapeHTML(message.authorName)}</span>
+            <span class="vector-pill">${escapeHTML(message.vectorId)}</span>
+            <span class="msg-time">${escapeHTML(message.authorRole)} · ${formatTime(message.createdAt)}</span>
+          </div>
+          <div class="msg-body">${escapeHTML(message.text)}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function startThread() {
+    const titleInput = document.getElementById('thread-title-input');
+    const categoryInput = document.getElementById('thread-category-input');
+    const bodyInput = document.getElementById('thread-body-input');
+    const title = titleInput.value.trim();
+    const text = bodyInput.value.trim();
+    if (!title || !text) return;
+
+    const user = getVectorUser();
+    const threads = getThreads();
+    threads.unshift({
+      id: makeId('thread'),
+      title,
+      category: categoryInput.value,
+      createdAt: new Date().toISOString(),
+      messages: [makeMessage(text, user, false)]
+    });
+    saveThreads(threads);
+    titleInput.value = '';
+    bodyInput.value = '';
+    activeThreadFilter = 'all';
+    document.querySelectorAll('.thread-filter').forEach(btn => btn.classList.toggle('active', btn.textContent.trim() === 'All'));
+    renderThreads();
+  }
+
+  function addReply(threadId) {
+    const input = document.getElementById(`reply-${threadId}`);
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    const threads = getThreads();
+    const thread = threads.find(item => item.id === threadId);
+    if (!thread) return;
+    thread.messages.push(makeMessage(text, getVectorUser(), true));
+    thread.createdAt = new Date().toISOString();
+    saveThreads(threads);
+    input.value = '';
+    renderThreads();
+  }
+
+  function filterThreads(btn, category) {
+    activeThreadFilter = category;
+    document.querySelectorAll('.thread-filter').forEach(item => item.classList.remove('active'));
+    btn.classList.add('active');
+    renderThreads();
+  }
+
+  function copyVectorId() {
+    const user = getVectorUser();
+    const value = `${user.vectorId} [${user.vector.map(n => n.toFixed(2)).join(', ')}]`;
+    if (navigator.clipboard) navigator.clipboard.writeText(value);
+  }
+
+  function resetVectorUser() {
+    const user = createVectorUser();
+    saveVectorUser(user);
+    renderVectorPanel();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderVectorPanel();
+    renderThreads();
+    const bodyInput = document.getElementById('thread-body-input');
+    if (bodyInput) {
+      bodyInput.addEventListener('keydown', event => {
+        if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') startThread();
+      });
+    }
+  });
+
+  // Scroll-based nav highlight
+  const sections = ['housing','transport','connections','chat'];
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 100) current = id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
