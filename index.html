@@ -684,41 +684,12 @@
   }
 
   /* ── FOOTER ── */
- /* ✅ FOOTER LOGO EDIT START */
 footer {
-  background: #000;
-  color: rgba(255,255,255,0.45);
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.8rem;
-  line-height: 1.8;
-}
-
-.footer-brand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  font-family: 'Syne', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #fff;
-  margin: 0 auto 0.5rem;
-}
-
-.footer-brand img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--accent);
-  background: #000;
-}
-
-.footer-brand span {
-  color: var(--accent);
-}
-/* ✅ FOOTER LOGO EDIT END */
+    background: var(--dark); color: rgba(255,255,255,0.45);
+    text-align: center; padding: 2rem;
+    font-size: 0.8rem; line-height: 1.8;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
 
   /* ── MODAL ── */
   .modal-overlay {
@@ -1260,13 +1231,18 @@ footer {
 </div>
 
 <!-- FOOTER -->
-<!-- ✅ FOOTER LOGO EDIT START -->
-<div class="footer-brand">
-  <img src="https://i.ibb.co/S7fP510J/IMG-20260528-WA0001.jpg" alt="BrizConnect logo">
-  <div>Briz<span>Connect</span></div>
-</div>
+<footer>
+  <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:0.5rem;">Briz<span style="color:#f5a623;">Connect</span></div>
+  Made by UoB students as part of the <strong style="color:#fff;">ThinkBig</strong> programme.<br>
+  Not an official University of Bristol resource — always verify details directly with providers.<br>
+  <br>
+  <a href="https://www.bristol.ac.uk/students/life-in-bristol/accommodation/">UoB Accommodation</a> &nbsp;·&nbsp;
+  <a href="https://www.bristol.ac.uk/alumni/get-involved/bristol-voices-/">Bristol Voices</a> &nbsp;·&nbsp;
+  <a href="https://www.bristolsu.org.uk">Students' Union</a>
+  <br><br>
+  <span style="opacity:0.4;font-size:0.7rem;">Prototype v0.1 — Information base project · Day 6 presentation ready</span>
+</footer>
 <!-- ✅ FOOTER LOGO EDIT END -->
-
 <script>
   // Filter housing cards
   function setFilter(btn, tag) {
