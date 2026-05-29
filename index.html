@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>BrizConnect</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
 <style>
   :root {
     --red: #e63022;
@@ -201,6 +202,31 @@
     font-weight: 700; font-size: 1.05rem; color: #fff;
   }
   .card-img-price small { font-size: 0.7rem; font-weight: 400; opacity: 0.8; }
+
+  /* ── ACCOMMODATION CARD PHOTOS ── */
+  .card-img.has-photo {
+    background: #efe2cc;
+  }
+  .card-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.01);
+    transition: transform 0.3s ease;
+  }
+  .housing-card:hover .card-photo { transform: scale(1.06); }
+  .card-img.has-photo .card-img-overlay {
+    z-index: 1;
+    background: linear-gradient(to top, rgba(26,18,9,0.82) 0%, rgba(26,18,9,0.28) 58%, rgba(26,18,9,0.08) 100%);
+  }
+  .card-img.has-photo .card-img-price {
+    z-index: 2;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  }
+
 
   .card-body { padding: 1.1rem 1.2rem 1.2rem; }
   .card-title {
@@ -755,522 +781,578 @@ footer {
 </style>
 </head>
 <body>
-
 <!-- ANNOUNCEMENT BANNER -->
 <div class="info-banner">
   🎓 Made by UoB students, for UoB students — <a href="#connections">join the conversation →</a>
 </div>
-
 <!-- NAV -->
 <nav>
-  <!-- ✅ LOGO EDIT START -->
+<!-- ✅ LOGO EDIT START -->
 <div class="nav-logo">
-  <img src="https://i.ibb.co/S7fP510J/IMG-20260528-WA0001.jpg" alt="BrizConnect logo">
-  <div>Briz<span>Connect</span></div>
+<img alt="BrizConnect logo" src="https://i.ibb.co/S7fP510J/IMG-20260528-WA0001.jpg"/>
+<div>Briz<span>Connect</span></div>
 </div>
 <!-- ✅ LOGO EDIT END -->
-  <div class="nav-links">
-    <a href="#housing" class="active">Housing</a>
-    <a href="#transport">Transport</a>
-    <a href="#map">Map</a>
-    <a href="#connections">Connections</a>
-    <a href="#chat">Chat</a>
-  </div>
-  <button class="nav-cta" onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">💬 Join Chat</button>
+<div class="nav-links">
+<a class="active" href="#housing">Housing</a>
+<a href="#transport">Transport</a>
+<a href="#map">Map</a>
+<a href="#connections">Connections</a>
+<a href="#chat">Chat</a>
+</div>
+<button class="nav-cta" onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">💬 Join Chat</button>
 </nav>
-
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">BrizConnect — Beta</div>
-  <h1>Find your place.<br><em>Navigate your city.</em></h1>
-  <p>Housing, transport & student life — all the info you actually need, without the fluff. Made by students who've been there.</p>
-  <div class="hero-btns">
-    <button class="btn-primary" onclick="document.getElementById('housing').scrollIntoView({behavior:'smooth'})">🏠 Find Housing</button>
-    <button class="btn-ghost" onclick="document.getElementById('transport').scrollIntoView({behavior:'smooth'})">🚌 Transport Guide</button>
-    <button class="btn-ghost" onclick="document.getElementById('map')?.scrollIntoView({behavior:'smooth'})">🗺️ Explore Map</button>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n">10<span>+</span></div><div class="stat-l">Guides</div></div>
-    <div class="stat"><div class="stat-n">50<span>+</span></div><div class="stat-l">Reviews</div></div>
-    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Campuses</div></div>
-    <div class="stat"><div class="stat-n">1</div><div class="stat-l">Community</div></div>
-  </div>
+<div class="hero-badge">BrizConnect — Beta</div>
+<h1>Find your place.<br/><em>Navigate your city.</em></h1>
+<p>Housing, transport &amp; student life — all the info you actually need, without the fluff. Made by students who've been there.</p>
+<div class="hero-btns">
+<button class="btn-primary" onclick="document.getElementById('housing').scrollIntoView({behavior:'smooth'})">🏠 Find Housing</button>
+<button class="btn-ghost" onclick="document.getElementById('transport').scrollIntoView({behavior:'smooth'})">🚌 Transport Guide</button>
+<button class="btn-ghost" onclick="document.getElementById('map')?.scrollIntoView({behavior:'smooth'})">🗺️ Explore Map</button>
+</div>
+<div class="hero-stats">
+<div class="stat"><div class="stat-n">10<span>+</span></div><div class="stat-l">Guides</div></div>
+<div class="stat"><div class="stat-n">50<span>+</span></div><div class="stat-l">Reviews</div></div>
+<div class="stat"><div class="stat-n">3</div><div class="stat-l">Campuses</div></div>
+<div class="stat"><div class="stat-n">1</div><div class="stat-l">Community</div></div>
+</div>
 </section>
-
 <!-- HOUSING -->
 <section class="section" id="housing">
-  <div class="pill-header red">🏠 Housing</div>
-  <h2 class="section-title fadeup">Find the right place to live</h2>
-  <p class="section-sub fadeup delay1">UoB halls, private halls & rentals — prices, bills, transport and honest reviews, all in one place.</p>
+<div class="pill-header red">🏠 Housing</div>
+<h2 class="section-title fadeup">Find the right place to live</h2>
+<p class="section-sub fadeup delay1">UoB halls, private halls &amp; rentals — prices, bills, transport and honest reviews, all in one place.</p>
+<div class="filter-bar fadeup delay2">
+<button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
+<button class="filter-btn" onclick="setFilter(this,'uob')">UoB Halls</button>
+<button class="filter-btn" onclick="setFilter(this,'private-hall')">Private Halls</button>
+<button class="filter-btn" onclick="setFilter(this,'rental')">Private Rental</button>
+<button class="filter-btn" onclick="setFilter(this,'bills-included')">Bills Included</button>
+<button class="filter-btn" onclick="setFilter(this,'parking')">Has Parking</button>
+</div>
+<div class="card-grid" id="housing-grid">
+<div class="housing-card fadeup" data-tags="uob bills-included">
+<div class="card-img has-photo"><img alt="Exterior of Accommodation at Thirty-Three in Bristol" class="card-photo" decoding="async" loading="lazy" src="https://www.bristol.ac.uk/media-library/sites/accommodation/images/residences/colston-hero-large.jpg"/>
+<div class="card-img-overlay"></div>
+<div class="card-img-price">£250–£270 <small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Accommodation at 33 (UoB)</div>
+<div class="card-location">📍 City Centre, 15 min to campus</div>
+<div class="tag-row">
+<span class="tag good">✅ Bills Included</span>
+<span class="tag info">🚌 Bus Route Cribbs Causeway 2, 3, 4 and Clifton, 8</span>
+<span class="tag info">🚶 Walk to Campus</span>
+<span class="tag warn">❌ No Parking</span>
+<span class="tag">No Guarantor</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★★☆</span>
+<span>4.1</span>
+<span class="review-count">(38 student reviews)</span>
+</div>
+<a class="card-cta" href="https://www.bristol.ac.uk/accommodation/about/residences/accommodation-at-thirty-three/" rel="noopener" target="_blank">View Details →</a>
+</div>
+</div>
+<div class="housing-card fadeup delay1" data-tags="uob bills-included">
+<div class="card-img has-photo"><img alt="Clifton Hill House common room and social space" class="card-photo" decoding="async" loading="lazy" src="https://www.bristol.ac.uk/media-library/sites/accommodation/images/residences/clifton-hill-house-header.jpg"/>
+<div class="card-img-overlay"></div>
+<div class="card-img-price">£136–£265 <small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Clifton Hill House (UoB)</div>
+<div class="card-location">📍 Clifton, 20 min walk to campus</div>
+<div class="tag-row">
+<span class="tag good">✅ Bills Included</span>
+<span class="tag good">🚶 Walk to Campus</span>
+<span class="tag warn">❌ No Parking</span>
+<span class="tag good">🍽️ Catered</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★★★</span>
+<span>4.6</span>
+<span class="review-count">(52 student reviews)</span>
+</div>
+<a class="card-cta" href="https://www.bristol.ac.uk/accommodation/about/residences/clifton-hill/" rel="noopener" target="_blank">View Details →</a>
+</div>
+</div>
+<div class="housing-card fadeup delay2" data-tags="private-hall bills-included parking">
+<div class="card-img has-photo"><img alt="Unite Students Bristol accommodation courtyard" class="card-photo" decoding="async" loading="lazy" src="https://dxp.plus/cdn-cgi/image/w%3D3840%2Cq%3D90%2Cf%3Dwebp%2Cfit%3Dcontain/https%3A//us-cdn.dxp.plus/3938f7ab-3c07-450e-a099-1467014ee3f6/Bristol_BrunelHouse_Courtyard.jpg.preview.webp"/>
 
-  <div class="filter-bar fadeup delay2">
-    <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
-    <button class="filter-btn" onclick="setFilter(this,'uob')">UoB Halls</button>
-    <button class="filter-btn" onclick="setFilter(this,'private-hall')">Private Halls</button>
-    <button class="filter-btn" onclick="setFilter(this,'rental')">Private Rental</button>
-    <button class="filter-btn" onclick="setFilter(this,'bills-included')">Bills Included</button>
-    <button class="filter-btn" onclick="setFilter(this,'parking')">Has Parking</button>
-  </div>
+<div class="card-img-overlay"></div>
+<div class="card-img-price">£175–£400 <small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Unite Students – Bristol</div>
+<div class="card-location">📍 City Centre, near Temple Meads</div>
+<div class="tag-row">
+<span class="tag good">✅ Bills Included</span>
+<span class="tag good">🅿️ Some Parking Available</span>
+<span class="tag info">🚂 Train Nearby</span>
+<span class="tag good">✅ International Guarantors Accepted</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★☆☆</span>
+<span>3.4</span>
+<span class="review-count">(29 student reviews)</span>
+</div>
+<a class="card-cta" href="#" onclick="openModal('unite');return false;">View Details →</a>
+</div>
+</div>
+<div class="housing-card fadeup" data-tags="rental parking">
+<div class="card-img has-photo"><img alt="Residential street in Redland, Bristol" class="card-photo" decoding="async" loading="lazy" src="https://www.unihomes.co.uk/cdn-cgi/image/width%3D768%2Cdpr%3D1%2Cformat%3Dauto%2Cquality%3D75/https%3A//cdn-p1.unihomes.co.uk/locations/bristol/redland.jpg"/>
 
-  <div class="card-grid" id="housing-grid">
+<div class="card-img-overlay"></div>
+<div class="card-img-price">£175–£900 <small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Private Rental – Redland / Cotham</div>
+<div class="card-location">📍 Redland, 20 to 25 mins walk to campus</div>
+<div class="tag-row">
+<span class="tag warn">⚡ Bills Extra</span>
+<span class="tag good">🅿️ Street Parking</span>
+<span class="tag warn">⚠️ Guarantors Needed</span>
+<span class="tag info">🚌 Stoke Bishop U1, 5, 77, and Cribbs Causeway 1, 2, 3, and 4</span>
+<span class="tag info">🏘️ House Share Options</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★★☆</span>
+<span>4.0</span>
+<span class="review-count">(14 student reviews)</span>
+</div>
+<a class="card-cta" href="https://www.bristol.ac.uk/jobs/relocation-support/accommodation/where-to-live-in-bristol/" rel="noopener" target="_blank">View University of Bristol Advice →</a>
+</div>
+</div>
+<div class="housing-card fadeup" data-tags="private-hall bills-included">
+<div class="card-img has-photo"><img alt="Almero Student Bristol social space" class="card-photo" decoding="async" loading="lazy" src="https://almerostudent.com/wp-content/uploads/2024/02/Social-Space-1-of-33-1440x960.jpg"/>
 
-    <div class="housing-card fadeup" data-tags="uob bills-included">
-      <div class="card-img" style="background: linear-gradient(135deg,#1a3a5c,#2d6fa4);">
+<div class="card-img-overlay"></div>
+<div class="card-img-price">£275–£300 <small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Private Accom – Almero</div>
+<div class="card-location">📍 City Centre, 20-25min walk to campus</div>
+<div class="tag-row">
+<span class="tag info">✅ Bills Included</span>
+<span class="tag info">❌ No Parking</span>
+<span class="tag info">⚠️ Guarantors Needed</span>
+<span class="tag info">🚌 Buses: U1, Cribbs Causeway 1, 2, 3, and 4</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★★☆</span>
+<span>4.0</span>
+<span class="review-count">(1 student reviews)</span>
+</div>
+<a class="card-cta" href="https://almerostudent.com/properties/bristol/" rel="noopener" target="_blank">View on Almero Student →</a>
+</div>
+</div>
+<div class="housing-card fadeup" data-tags="uob bills-included">
+<div class="card-img has-photo"><img alt="Wills Hall exterior courtyard in Stoke Bishop" class="card-photo" decoding="async" loading="lazy" src="https://www.bristol.ac.uk/media-library/sites/accommodation/images/residences/wills-header.jpg"/>
+
+<div class="card-img-overlay"></div>
+<div class="card-img-price">£140–£300 <small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Wills Hall</div>
+<div class="card-location">📍 Stoke Bishop, 20mins bus to campus</div>
+<div class="tag-row">
+<span class="tag info">✅ Bills Included</span>
+<span class="tag info">🅿️ Limited parking available with permit</span>
+<span class="tag info">🚌 Stoke Bishop U1, 5, 77, and Cribbs Causeway 1, 2, 3, and 4</span>
+<span class="tag info">🍽️ Catered &amp; Self-Catered Options</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★★☆</span>
+<span>4.0</span>
+<span class="review-count">(14 student reviews)</span>
+</div>
+<a class="card-cta" href="https://www.bristol.ac.uk/accommodation/about/residences/wills-hall/" rel="noopener" target="_blank">View UoB Accom website →</a>
+</div>
+</div>
+<div class="housing-card fadeup" data-tags="uob bills-included">
+<div class="card-img has-photo"><img alt="Langford accommodation kitchen and green view" class="card-photo" decoding="async" loading="lazy" src="https://www.bristol.ac.uk/media-library/sites/accommodation/images/residences/Langford-large.jpg"/>
+
+<div class="card-img-overlay"></div>
+<div class="card-img-price">£157.50 <small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Langford (Vet School)</div>
+<div class="card-location">📍Langford Campus, 50mins bus to City Centre</div>
+<div class="tag-row">
+<span class="tag info">✅ Bills Included</span>
+<span class="tag info">🅿️ Limited parking available with permit</span>
+<span class="tag info">🚌 U2 bus</span>
+<span class="tag info">🍽️ Self-Catered</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★★☆</span>
+<span>4.0</span>
+<span class="review-count">(10 student reviews)</span>
+</div>
+<a class="card-cta" href="https://www.bristol.ac.uk/accommodation/about/residences/langford/" rel="noopener" target="_blank">View UoB Accom website →</a>
+</div>
+</div>
+<div class="housing-card fadeup" data-tags="uob bills-included">
+<div class="card-img has-photo"><img alt="The Courtrooms shared kitchen" class="card-photo" decoding="async" loading="lazy" src="https://www.bristol.ac.uk/media-library/sites/accommodation/images/residences/the-courtrooms-large.jpg"/>
+<div class="card-img-overlay"></div>
+<div class="card-img-price">£235-£332<small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Courtrooms</div>
+<div class="card-location">📍City Centre, 20min walk to Campus</div>
+<div class="tag-row">
+<span class="tag info">✅ Bills Included</span>
+<span class="tag info">🅿️ No parking</span>
+<span class="tag info">🚌 bus 2a</span>
+<span class="tag info">🍽️ Self-Catered</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★★☆</span>
+<span>4.0</span>
+<span class="review-count">(10 student reviews)</span>
+</div>
+<a class="card-cta" href="https://www.bristol.ac.uk/accommodation/about/residences/the-courtrooms/" rel="noopener" target="_blank">View UoB Accom website →</a>
+</div>
+</div>
+<div class="housing-card fadeup delay1" data-tags="private-hall bills-included parking">
+ <div class="card-img" style="background: linear-gradient(135deg,#1a3a5c,#2d6fa4);">
         <div class="card-img-bg">🏛️</div>
         <div class="card-img-overlay"></div>
-        <div class="card-img-price">£250–£270 <small>/week</small></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Accommodation at 33 (UoB)</div>
-        <div class="card-location">📍 City Centre, 15 min to campus</div>
-        <div class="tag-row">
-          <span class="tag good">✅ Bills Included</span>
-          <span class="tag info">🚌 Bus Route Cribbs Causeway 2, 3, 4 and Clifton, 8</span>
-          <span class="tag info">🚶 Walk to Campus</span>
-          <span class="tag warn">❌ No Parking</span>
-          <span class="tag">No Guarantor</span>
-        </div>
-        <div class="card-stars">
-          <span class="stars">★★★★☆</span>
-          <span>4.1</span>
-          <span class="review-count">(38 student reviews)</span>
-        </div>
-        <a class="card-cta" href="https://www.bristol.ac.uk/accommodation/about/residences/accommodation-at-thirty-three/" target="_blank">View Details →</a>
-      </div>
-    </div>
+<div class="card-img-price">£196–£300 <small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Hotwells</div>
+<div class="card-location">📍 Hotwells, 15min bus to campus</div>
+<div class="tag-row">
+<span class="tag warn">⚡ Bills Extra</span>
+<span class="tag info">✅ Gym</span>
+<span class="tag info">🅿️ Onsite Parking (charges apply)</span>
+<span class="tag warn">⚠️ Guarantors Needed</span>
+<span class="tag info">🚌 Bus U2, X1</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★★☆</span>
+<span>4.6</span>
+<span class="review-count">(9 student reviews)</span>
+</div>
+<a class="card-cta" href="https://www.dwellstudent.com/en-gb/bristol/hotwells-house" rel="noopener" target="_blank">View on Dwell Student Living→</a>
+</div>
+</div>
+<div class="housing-card fadeup delay1" data-tags="rental">
+<div class="card-img has-photo"><img alt="Terraced housing street in Easton, Bristol" class="card-photo" decoding="async" loading="lazy" src="https://www.oceanhome.co.uk/media/vluglbfa/easton-06.jpg"/>
 
-    <div class="housing-card fadeup delay1" data-tags="uob bills-included">
-      <div class="card-img" style="background: linear-gradient(135deg,#1a4c2a,#2d9c5c);">
-        <div class="card-img-bg">🌿</div>
-        <div class="card-img-overlay"></div>
-        <div class="card-img-price">£136–£265 <small>/week</small></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Clifton Hill House (UoB)</div>
-        <div class="card-location">📍 Clifton, 20 min walk to campus</div>
-        <div class="tag-row">
-          <span class="tag good">✅ Bills Included</span>
-          <span class="tag good">🚶 Walk to Campus</span>
-          <span class="tag warn">❌ No Parking</span>
-          <span class="tag good">🍽️ Catered</span>
-        </div>
-        <div class="card-stars">
-          <span class="stars">★★★★★</span>
-          <span>4.6</span>
-          <span class="review-count">(52 student reviews)</span>
-        </div>
-        <a class="card-cta" href="https://www.bristol.ac.uk/accommodation/about/residences/clifton-hill/" target="_blank">View Details →</a>
-      </div>
-    </div>
+<div class="card-img-overlay"></div>
+<div class="card-img-price">£140–£200 <small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Private Rental – Easton / St Werburghs</div>
+<div class="card-location">📍 Easton, 30 min bus to campus</div>
+<div class="tag-row">
+<span class="tag warn">⚡ Bills Extra</span>
+<span class="tag good">💰 Budget Friendly</span>
+<span class="tag warn">⚠️ Guarantors Needed</span>
+<span class="tag info">🚌 Bus 8/45/49 and 3</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★☆☆</span>
+<span>3.6</span>
+<span class="review-count">(9 student reviews)</span>
+</div>
+<a class="card-cta" href="https://www.unihomes.co.uk/student-accommodation/bristol/easton" rel="noopener" target="_blank">View on UniHomes →</a>
+</div>
+</div>
+<div class="housing-card fadeup delay2" data-tags="uob bills-included">
+<div class="card-img has-photo"><img alt="Hiatt Baker Hall self-catered accommodation exterior" class="card-photo" decoding="async" loading="lazy" src="https://www.bristol.ac.uk/media-library/sites/accommodation/images/residences/hiatt-baker-sc-header.jpg"/>
 
-    <div class="housing-card fadeup delay2" data-tags="private-hall bills-included parking">
-      <div class="card-img" style="background: linear-gradient(135deg,#4a1a5c,#9c2d9c);">
-        <div class="card-img-bg">🏢</div>
-        <div class="card-img-overlay"></div>
-        <div class="card-img-price">£175–£400 <small>/week</small></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Unite Students – Bristol</div>
-        <div class="card-location">📍 City Centre, near Temple Meads</div>
-        <div class="tag-row">
-          <span class="tag good">✅ Bills Included</span>
-          <span class="tag good">🅿️ Some Parking Available</span>
-          <span class="tag info">🚂 Train Nearby</span>
-          <span class="tag good">✅ International Guarantors Accepted</span>
-        </div>
-        <div class="card-stars">
-          <span class="stars">★★★☆☆</span>
-          <span>3.4</span>
-          <span class="review-count">(29 student reviews)</span>
-        </div>
-        <a class="card-cta" href="#" onclick="openModal('unite');return false;">View Details →</a>
-      </div>
-    </div>
-
-    <div class="housing-card fadeup" data-tags="rental parking">
-      <div class="card-img" style="background: linear-gradient(135deg,#5c3a1a,#c77b00);">
-        <div class="card-img-bg">🏡</div>
-        <div class="card-img-overlay"></div>
-        <div class="card-img-price">£175–£900 <small>/week</small></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Private Rental – Redland / Cotham</div>
-        <div class="card-location">📍 Redland, 20 to 25 mins walk to campus</div>
-        <div class="tag-row">
-          <span class="tag warn">⚡ Bills Extra</span>
-          <span class="tag good">🅿️ Street Parking</span>
-          <span class="tag warn">⚠️ Guarantors Needed</span>
-          <span class="tag info">🚌 Stoke Bishop U1, 5, 77, and Cribbs Causeway 1, 2, 3, and 4</span>
-          <span class="tag info">🏘️ House Share Options</span>
-        </div>
-        <div class="card-stars">
-          <span class="stars">★★★★☆</span>
-          <span>4.0</span>
-          <span class="review-count">(14 student reviews)</span>
-        </div>
-        <a class="card-cta" href="https://www.bristol.ac.uk/jobs/relocation-support/accommodation/where-to-live-in-bristol/" target="_blank">View University of Bristol Advice →</a>
-      </div>
-    </div>
-
-    <div class="housing-card fadeup delay1" data-tags="rental">
-      <div class="card-img" style="background: linear-gradient(135deg,#1a4a5c,#2d9ca0);">
-        <div class="card-img-bg">🏘️</div>
-        <div class="card-img-overlay"></div>
-        <div class="card-img-price">£140–£200 <small>/week</small></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Private Rental – Easton / St Werburghs</div>
-        <div class="card-location">📍 Easton, 30 min bus to campus</div>
-        <div class="tag-row">
-          <span class="tag warn">⚡ Bills Extra</span>
-          <span class="tag good">💰 Budget Friendly</span>
-          <span class="tag warn">⚠️ Guarantors Needed</span>
-          <span class="tag info">🚌 Bus 8/45/49 and 3</span>
-        </div>
-        <div class="card-stars">
-          <span class="stars">★★★☆☆</span>
-          <span>3.6</span>
-          <span class="review-count">(9 student reviews)</span>
-        </div>
-        <a class="card-cta" href="https://www.unihomes.co.uk/student-accommodation/bristol/easton" target="_blank">View on UniHomes →</a>
-      </div>
-    </div>
-
-    <div class="housing-card fadeup delay2" data-tags="uob bills-included">
-      <div class="card-img" style="background: linear-gradient(135deg,#5c1a1a,#e63022);">
-        <div class="card-img-bg">🎓</div>
-        <div class="card-img-overlay"></div>
-        <div class="card-img-price">£170–£315 <small>/week</small></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Hiatt Baker Hall (UoB)</div>
-        <div class="card-location">📍 Stoke Bishop, 25 mins to campus</div>
-        <div class="tag-row">
-          <span class="tag good">✅ Bills Included</span>
-          <span class="tag warn">⚠️ No bus passes; Buses include U1, 5, 77, 3, and 4</span>
-          <span class="tag warn">❌ No Parking</span>
-        </div>
-        <div class="card-stars">
-          <span class="stars">★★★★☆</span>
-          <span>4.2</span>
-          <span class="review-count">(61 student reviews)</span>
-        </div>
-        <a class="card-cta" href="https://www.bristol.ac.uk/accommodation/about/residences/hiatt-baker-hall/" target="_blank">View Details →</a>
-      </div>
-    </div>
-
-  </div>
+<div class="card-img-overlay"></div>
+<div class="card-img-price">£170–£315 <small>/week</small></div>
+</div>
+<div class="card-body">
+<div class="card-title">Hiatt Baker Hall (UoB)</div>
+<div class="card-location">📍 Stoke Bishop, 25 mins to campus</div>
+<div class="tag-row">
+<span class="tag good">✅ Bills Included</span>
+<span class="tag warn">⚠️ No bus passes; Buses include U1, 5, 77, 3, and 4</span>
+<span class="tag warn">❌ No Parking</span>
+</div>
+<div class="card-stars">
+<span class="stars">★★★★☆</span>
+<span>4.2</span>
+<span class="review-count">(61 student reviews)</span>
+</div>
+<a class="card-cta" href="https://www.bristol.ac.uk/accommodation/about/residences/hiatt-baker-hall/" rel="noopener" target="_blank">View Details →</a>
+</div>
+</div>
+</div>
 </section>
-
 <!-- TRANSPORT -->
 <div class="transport-bg" id="transport">
-  <div class="transport-inner">
-    <div class="pill-header" style="background:rgba(255,255,255,0.1);color:#fff;">🚌 Transport</div>
-    <h2 class="section-title">Getting around Bristol</h2>
-    <p class="section-sub">Everything you need to know — buses, trains, taxis. Real talk, no spin.</p>
-
-    <div class="transport-grid">
-
-      <div class="transport-card">
-        <div class="t-icon">🚌</div>
-        <div class="t-title">First Bus – City Routes</div>
-        <div class="t-desc">Key routes to Clifton, Stoke Bishop & city centre. The U1/U2 are your main UoB routes — get a student bus pass to save big.</div>
-        <div class="t-tip">⚠️ Buses run late &amp; cancel often — leave 10 min early, always. Seriously.</div>
-        <a class="t-link" href="https://www.firstbus.co.uk/bristol-bath-and-west" target="_blank">First Bus routes & passes →</a>
-      </div>
-
-      <div class="transport-card">
-        <div class="t-icon">🚂</div>
-        <div class="t-title">Trains – Temple Meads & Clifton Down</div>
-        <div class="t-desc">Bristol Temple Meads is the main hub. Clifton Down station is handy for the Downs area. Use 16–25 Railcard + Trainline for cheapest fares.</div>
-        <div class="t-tip">🎟️ Book advance tickets on Trainline for big savings vs walking up.</div>
-        <a class="t-link" href="https://www.trainline.com" target="_blank">Trainline →</a>&nbsp;&nbsp;
-        <a class="t-link" href="https://travelwest.info" target="_blank">Travel West →</a>
-      </div>
-
-      <div class="transport-card">
-        <div class="t-icon">🚖</div>
-        <div class="t-title">Taxi &amp; Uber</div>
-        <div class="t-desc">Uber is widely available across Bristol. Licensed black cabs available at Temple Meads. Arrow Cars is a popular local firm — often cheaper late night.</div>
-        <div class="t-tip">💡 Split Uber with flatmates after nights out — saves everyone.</div>
-        <a class="t-link" href="https://www.uber.com/gb/en/ride/" target="_blank">Uber Bristol →</a>
-      </div>
-
-      <div class="transport-card">
-        <div class="t-icon">🚲</div>
-        <div class="t-title">Cycling &amp; Scooting</div>
-        <div class="t-desc">Bristol has decent cycle lanes. Voi &amp; Tier e-scooters are available with student discounts. Cycling from Redland to campus takes ~15 mins.</div>
-        <div class="t-tip">🔒 Invest in a good D-lock — bike theft is common in the city.</div>
-        <a class="t-link" href="https://www.voi.com/en/cities/bristol/" target="_blank">Voi e-scooters →</a>
-      </div>
-
-      <div class="transport-card">
-        <div class="t-icon">🗺️</div>
-        <div class="t-title">Key Campus Connections</div>
-        <div class="t-desc">Main campus: U1/U2 buses. Langford (vet): X5 from Temple Meads. Frenchay (UWE): no.17 bus. Free UoB shuttle from Stoke Bishop halls.</div>
-        <div class="t-tip">📱 Download the First Bus app — live tracking is a lifesaver.</div>
-        <a class="t-link" href="https://www.bristol.ac.uk/students/life-in-bristol/getting-around/" target="_blank">UoB getting around guide →</a>
-      </div>
-
-      <div class="transport-card">
-        <div class="t-icon">🅿️</div>
-        <div class="t-title">Parking in Bristol</div>
-        <div class="t-desc">City centre parking is expensive. Resident permit zones cover most student areas. If your accommodation has parking — use it. Park &amp; Ride from the edges is cheaper.</div>
-        <div class="t-tip">🚗 Most UoB halls don't allow cars in 1st year. Check your contract!</div>
-        <a class="t-link" href="https://www.bristol.gov.uk/parking-travel-transport" target="_blank">Bristol parking info →</a>
-      </div>
-
-    </div>
-  </div>
+<div class="transport-inner">
+<div class="pill-header" style="background:rgba(255,255,255,0.1);color:#fff;">🚌 Transport</div>
+<h2 class="section-title">Getting around Bristol</h2>
+<p class="section-sub">Everything you need to know — buses, trains, taxis. Real talk, no spin.</p>
+<div class="transport-grid">
+<div class="transport-card">
+<div class="t-icon">🚌</div>
+<div class="t-title">First Bus – City Routes</div>
+<div class="t-desc">Key routes to Clifton, Stoke Bishop &amp; city centre. The U1/U2 are your main UoB routes — get a student bus pass to save big.</div>
+<div class="t-tip">⚠️ Buses run late &amp; cancel often — leave 10 min early, always. Seriously.</div>
+<a class="t-link" href="https://www.firstbus.co.uk/bristol-bath-and-west" rel="noopener" target="_blank">First Bus routes &amp; passes →</a>
 </div>
-
-
+<div class="transport-card">
+<div class="t-icon">🚂</div>
+<div class="t-title">Trains – Temple Meads &amp; Clifton Down</div>
+<div class="t-desc">Bristol Temple Meads is the main hub. Clifton Down station is handy for the Downs area. Use 16–25 Railcard + Trainline for cheapest fares.</div>
+<div class="t-tip">🎟️ Book advance tickets on Trainline for big savings vs walking up.</div>
+<a class="t-link" href="https://www.trainline.com" rel="noopener" target="_blank">Trainline →</a>  
+        <a class="t-link" href="https://travelwest.info" rel="noopener" target="_blank">Travel West →</a>
+</div>
+<div class="transport-card">
+<div class="t-icon">🚖</div>
+<div class="t-title">Taxi &amp; Uber</div>
+<div class="t-desc">Uber is widely available across Bristol. Licensed black cabs available at Temple Meads. Arrow Cars is a popular local firm — often cheaper late night.</div>
+<div class="t-tip">💡 Split Uber with flatmates after nights out — saves everyone.</div>
+<a class="t-link" href="https://www.uber.com/gb/en/ride/" rel="noopener" target="_blank">Uber Bristol →</a>
+</div>
+<div class="transport-card">
+<div class="t-icon">🚲</div>
+<div class="t-title">Cycling &amp; Scooting</div>
+<div class="t-desc">Bristol has decent cycle lanes. Voi &amp; Tier e-scooters are available with student discounts. Cycling from Redland to campus takes ~15 mins.</div>
+<div class="t-tip">🔒 Invest in a good D-lock — bike theft is common in the city.</div>
+<a class="t-link" href="https://www.voi.com/" rel="noopener" target="_blank">Voi e-scooters →</a>
+</div>
+<div class="transport-card">
+<div class="t-icon">🗺️</div>
+<div class="t-title">Key Campus Connections</div>
+<div class="t-desc">Main campus: U1/U2 buses. Langford (vet): X5 from Temple Meads. Frenchay (UWE): no.17 bus. Free UoB shuttle from Stoke Bishop halls.</div>
+<div class="t-tip">📱 Download the First Bus app — live tracking is a lifesaver.</div>
+<a class="t-link" href="https://www.bristol.ac.uk/students/life-in-bristol/getting-around/" rel="noopener" target="_blank">UoB getting around guide →</a>
+</div>
+<div class="transport-card">
+<div class="t-icon">🅿️</div>
+<div class="t-title">Parking in Bristol</div>
+<div class="t-desc">City centre parking is expensive. Resident permit zones cover most student areas. If your accommodation has parking — use it. Park &amp; Ride from the edges is cheaper.</div>
+<div class="t-tip">🚗 Most UoB halls don't allow cars in 1st year. Check your contract!</div>
+<a class="t-link" href="https://www.bristol.gov.uk/parking-travel-transport" rel="noopener" target="_blank">Bristol parking info →</a>
+</div>
+</div>
+</div>
+</div>
 <!-- GOOGLE MAP BRISTOL OVERVIEW -->
 <section class="map-section-wrap" id="map">
-  <div class="section">
-    <div class="pill-header blue">🗺️ Bristol Map</div>
-    <h2 class="section-title fadeup">Housing & transport map</h2>
-    <p class="section-sub fadeup delay1">A Google Maps embed with clickable HTML labels. Each label is positioned from stored latitude/longitude values inside the Bristol map bounds.</p>
-
-    <div class="map-shell fadeup delay2">
-      <div class="map-frame" aria-label="Google map of Bristol with interactive coordinate labels">
-        <iframe
-          class="google-map-embed"
-          id="google-map-embed"
-          title="Google Map of Bristol student housing and transport areas"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://maps.google.com/maps?ll=51.4640,-2.5950&z=13&t=m&output=embed">
-        </iframe>
-
-        <div class="map-label-layer" id="google-map-label-layer" aria-label="Clickable Bristol housing and transport labels"></div>
-
-        <div class="google-map-note">Click a label to view its coordinates and a Google Maps link. Labels are HTML overlays positioned from latitude/longitude.</div>
-      </div>
-
-      <aside class="map-panel" aria-label="Bristol map controls and selected place details">
-        <div class="map-panel-title">Interactive coordinate labels</div>
-        <div class="map-panel-sub">The label positions are calculated from real latitude/longitude values using a fixed Bristol viewport. Use filters to simplify the view.</div>
-
-        <div class="map-controls" aria-label="Filter map labels">
-          <button class="map-filter active" type="button" onclick="filterGoogleMapLabels(this,'all')">All labels</button>
-          <button class="map-filter" type="button" onclick="filterGoogleMapLabels(this,'housing')">🏠 Housing</button>
-          <button class="map-filter" type="button" onclick="filterGoogleMapLabels(this,'transport')">🚌 Transport</button>
-          <button class="map-filter" type="button" onclick="filterGoogleMapLabels(this,'campus')">🎓 Campus</button>
-        </div>
-
-        <div class="map-detail-card" id="map-detail-card" aria-live="polite">
-          <div class="map-detail-kicker">🗺️ Selected place</div>
-          <div class="map-detail-name">Choose a label on the map</div>
-          <div class="map-detail-copy">Click any 🏠 housing label or 🚌 transport label to see its coordinates and open it in Google Maps.</div>
-          <div class="map-coordinates">Lat/Lng will appear here.</div>
-        </div>
-
-        <div class="map-legend">
-          <div class="map-legend-item">
-            <span class="map-legend-icon house">🏠</span>
-            <div><div class="map-legend-title">Housing points</div><div class="map-legend-copy">Specific halls plus common student rental neighbourhood anchors.</div></div>
-          </div>
-          <div class="map-legend-item">
-            <span class="map-legend-icon transport">🚌</span>
-            <div><div class="map-legend-title">Transport points/routes</div><div class="map-legend-copy">Rail stations, bus route anchors and city transport links.</div></div>
-          </div>
-          <div class="map-legend-item">
-            <span class="map-legend-icon campus">🎓</span>
-            <div><div class="map-legend-title">Campus anchor</div><div class="map-legend-copy">University of Bristol campus reference point near Wills Memorial Building.</div></div>
-          </div>
-        </div>
-
-        <div class="map-note">For reliability, the Google map stays as a normal iframe and the clickable labels are lightweight webpage elements placed above it.</div>
-      </aside>
-    </div>
-  </div>
+<div class="section">
+<div class="pill-header blue">🗺️ Bristol Map</div>
+<h2 class="section-title fadeup">Housing &amp; transport map</h2>
+<p class="section-sub fadeup delay1">A Google Maps embed with clickable HTML labels. Each label is positioned from stored latitude/longitude values inside the Bristol map bounds.</p>
+<div class="map-shell fadeup delay2">
+<div aria-label="Google map of Bristol with interactive coordinate labels" class="map-frame">
+<iframe class="google-map-embed" id="google-map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?ll=51.4640,-2.5950&amp;z=13&amp;t=m&amp;output=embed" title="Google Map of Bristol student housing and transport areas">
+</iframe>
+<div aria-label="Clickable Bristol housing and transport labels" class="map-label-layer" id="google-map-label-layer"></div>
+<div class="google-map-note">Click a label to view its coordinates and a Google Maps link. Labels are HTML overlays positioned from latitude/longitude.</div>
+</div>
+<aside aria-label="Bristol map controls and selected place details" class="map-panel">
+<div class="map-panel-title">Interactive coordinate labels</div>
+<div class="map-panel-sub">The label positions are calculated from real latitude/longitude values using a fixed Bristol viewport. Use filters to simplify the view.</div>
+<div aria-label="Filter map labels" class="map-controls">
+<button class="map-filter active" onclick="filterGoogleMapLabels(this,'all')" type="button">All labels</button>
+<button class="map-filter" onclick="filterGoogleMapLabels(this,'housing')" type="button">🏠 Housing</button>
+<button class="map-filter" onclick="filterGoogleMapLabels(this,'transport')" type="button">🚌 Transport</button>
+<button class="map-filter" onclick="filterGoogleMapLabels(this,'campus')" type="button">🎓 Campus</button>
+</div>
+<div aria-live="polite" class="map-detail-card" id="map-detail-card">
+<div class="map-detail-kicker">🗺️ Selected place</div>
+<div class="map-detail-name">Choose a label on the map</div>
+<div class="map-detail-copy">Click any 🏠 housing label or 🚌 transport label to see its coordinates and open it in Google Maps.</div>
+<div class="map-coordinates">Lat/Lng will appear here.</div>
+</div>
+<div class="map-legend">
+<div class="map-legend-item">
+<span class="map-legend-icon house">🏠</span>
+<div><div class="map-legend-title">Housing points</div><div class="map-legend-copy">Specific halls plus common student rental neighbourhood anchors.</div></div>
+</div>
+<div class="map-legend-item">
+<span class="map-legend-icon transport">🚌</span>
+<div><div class="map-legend-title">Transport points/routes</div><div class="map-legend-copy">Rail stations, bus route anchors and city transport links.</div></div>
+</div>
+<div class="map-legend-item">
+<span class="map-legend-icon campus">🎓</span>
+<div><div class="map-legend-title">Campus anchor</div><div class="map-legend-copy">University of Bristol campus reference point near Wills Memorial Building.</div></div>
+</div>
+</div>
+<div class="map-note">For reliability, the Google map stays as a normal iframe and the clickable labels are lightweight webpage elements placed above it.</div>
+</aside>
+</div>
+</div>
 </section>
-
 <!-- STUDENT CONNECTIONS -->
 <section class="section" id="connections">
-  <div class="pill-header green">🤝 Student Connections</div>
-  <h2 class="section-title">You're not alone</h2>
-  <p class="section-sub">Resources, discounts and communities to help you settle in.</p>
-
-  <div class="connections-grid">
-    <div class="conn-card">
-      <div class="conn-icon">🏫</div>
-      <div class="conn-title">UoB Students' Union</div>
-      <div class="conn-desc">200+ societies, sports clubs, welfare officers and campaigns. Your SU is your biggest ally at uni.</div>
-      <a class="conn-link" href="https://www.bristolsu.org.uk" target="_blank">bristolsu.org.uk →</a>
-    </div>
-    <div class="conn-card">
-      <div class="conn-icon">🎙️</div>
-      <div class="conn-title">Bristol Voices</div>
-      <div class="conn-desc">Peer-to-peer stories from UoB students and alumni — real experiences, real advice about Bristol life.</div>
-      <a class="conn-link" href="https://www.bristol.ac.uk/alumni/get-involved/bristol-voices-/" target="_blank">Read Bristol Voices →</a>
-    </div>
-    <div class="conn-card">
-      <div class="conn-icon">🤝</div>
-      <div class="conn-title">Guarantor Info</div>
-      <div class="conn-desc">International or first-gen student? Most private rentals need a UK guarantor. Learn your options — Housing Hand, UK Guarantor Service and more.</div>
-      <a class="conn-link" href="https://housinghand.com/help-and-advice/guides-for-tenants/bristol-guarantor-service" target="_blank">UoB Guarantor Guide →</a>
-    </div>
-    <div class="conn-card">
-      <div class="conn-icon">💳</div>
-      <div class="conn-title">Student Discounts</div>
-      <div class="conn-desc">Hundreds of deals from ASOS, Apple, Domino's and more. Download both apps — different deals on each.</div>
-      <a class="conn-link" href="https://www.studentbeans.com" target="_blank">Student Beans →</a>&nbsp;
-      <a class="conn-link" href="https://www.myunidays.com" target="_blank">UNiDAYS →</a>
-    </div>
-    <div class="conn-card">
-      <div class="conn-icon">💰</div>
-      <div class="conn-title">Student Finances</div>
-      <div class="conn-desc">Bursaries, hardship funds, money management tools — UoB has more financial support than most students realise.</div>
-      <a class="conn-link" href="https://www.bristol.ac.uk/students/support/finances/" target="_blank">UoB Finance Support →</a>
-    </div>
-    <div class="conn-card">
-      <div class="conn-icon">📲</div>
-      <div class="conn-title">Social — Stay Connected</div>
-      <div class="conn-desc">Follow <strong>@BrizConnect</strong> on Instagram for freshers events. Tag <strong>#ThinkBig</strong> to share your experience.</div>
-      <a class="conn-link" href="https://www.instagram.com/brizconnect" target="_blank">Instagram →</a>
-    </div>
-  </div>
+<div class="pill-header green">🤝 Student Connections</div>
+<h2 class="section-title">You're not alone</h2>
+<p class="section-sub">Resources, discounts and communities to help you settle in.</p>
+<div class="connections-grid">
+<div class="conn-card">
+<div class="conn-icon">🏫</div>
+<div class="conn-title">UoB Students' Union</div>
+<div class="conn-desc">200+ societies, sports clubs, welfare officers and campaigns. Your SU is your biggest ally at uni.</div>
+<a class="conn-link" href="https://www.bristolsu.org.uk" rel="noopener" target="_blank">bristolsu.org.uk →</a>
+</div>
+<div class="conn-card">
+<div class="conn-icon">🎙️</div>
+<div class="conn-title">Bristol Voices</div>
+<div class="conn-desc">Peer-to-peer stories from UoB students and alumni — real experiences, real advice about Bristol life.</div>
+<a class="conn-link" href="https://www.bristol.ac.uk/alumni/get-involved/bristol-voices-/" rel="noopener" target="_blank">Read Bristol Voices →</a>
+</div>
+<div class="conn-card">
+<div class="conn-icon">🤝</div>
+<div class="conn-title">Guarantor Info</div>
+<div class="conn-desc">International or first-gen student? Most private rentals need a UK guarantor. Learn your options — Housing Hand, UK Guarantor Service and more.</div>
+<a class="conn-link" href="https://housinghand.com/help-and-advice/guides-for-tenants/bristol-guarantor-service" rel="noopener" target="_blank">UoB Guarantor Guide →</a>
+</div>
+<div class="conn-card">
+<div class="conn-icon">💳</div>
+<div class="conn-title">Student Discounts</div>
+<div class="conn-desc">Hundreds of deals from ASOS, Apple, Domino's and more. Download both apps — different deals on each.</div>
+<a class="conn-link" href="https://www.studentbeans.com" rel="noopener" target="_blank">Student Beans →</a> 
+      <a class="conn-link" href="https://www.myunidays.com" rel="noopener" target="_blank">UNiDAYS →</a>
+</div>
+<div class="conn-card">
+<div class="conn-icon">💰</div>
+<div class="conn-title">Student Finances</div>
+<div class="conn-desc">Bursaries, hardship funds, money management tools — UoB has more financial support than most students realise.</div>
+<a class="conn-link" href="https://www.bristol.ac.uk/students/support/finances/" rel="noopener" target="_blank">UoB Finance Support →</a>
+</div>
+<div class="conn-card">
+<div class="conn-icon">📲</div>
+<div class="conn-title">Social — Stay Connected</div>
+<div class="conn-desc">Follow <strong>@BrizConnect</strong> on Instagram for freshers events. Tag <strong>#ThinkBig</strong> to share your experience.</div>
+<a class="conn-link" href="https://www.instagram.com/brizconnect" rel="noopener" target="_blank">Instagram →</a>
+</div>
+</div>
 </section>
-
 <!-- THREADED VECTOR CHATROOM -->
 <section class="section" id="chat">
-  <div class="pill-header blue">💬 Student Chat</div>
-  <h2 class="section-title">Threaded Anonymous Q&amp;A</h2>
-  <p class="section-sub">Ask anything about housing or transport. Each browser gets a persistent anonymous vector profile for replies and thread identity.</p>
-
-  <div class="chat-section">
-    <div class="chat-title">🧵 Community Threads</div>
-    <div class="chat-sub">Anonymous · Threaded replies · Local demo storage · No personal data required</div>
-
-    <div class="chat-layout">
-      <aside class="vector-panel" aria-label="Your anonymous vector identity">
-        <div class="vector-head">
-          <div class="vector-avatar" id="current-vector-avatar"></div>
-          <div>
-            <div class="vector-name" id="current-vector-name">Anonymous Vector</div>
-            <div class="vector-role" id="current-vector-role">Student participant</div>
-          </div>
-        </div>
-        <div class="vector-code" id="current-vector-code">Vector loading…</div>
-        <p class="vector-note">Your vector is randomly generated and saved in this browser. It helps others recognise the same anonymous user across threads without using names or emails.</p>
-        <div class="vector-actions">
-          <button class="mini-btn" type="button" onclick="copyVectorId()">Copy Vector</button>
-          <button class="mini-btn" type="button" onclick="resetVectorUser()">New Vector</button>
-        </div>
-      </aside>
-
-      <div class="thread-column">
-        <div class="thread-composer">
-          <div class="composer-grid">
-            <input class="chat-input" id="thread-title-input" type="text" maxlength="80" placeholder="Thread title, e.g. Is Redland good for second year?">
-            <select class="chat-select" id="thread-category-input" aria-label="Thread category">
-              <option>Housing</option>
-              <option>Transport</option>
-              <option>Freshers</option>
-              <option>International</option>
-              <option>Money</option>
-            </select>
-          </div>
-          <textarea class="chat-textarea" id="thread-body-input" maxlength="500" placeholder="Start a thread or ask a question anonymously..."></textarea>
-          <div class="composer-footer">
-            <span class="composer-hint">Posts are stored locally in this prototype. Refreshing keeps your demo threads on this device.</span>
-            <button class="chat-send" type="button" onclick="startThread()">Start Thread</button>
-          </div>
-        </div>
-
-        <div class="thread-tools" aria-label="Filter chat threads">
-          <button class="thread-filter active" type="button" onclick="filterThreads(this,'all')">All</button>
-          <button class="thread-filter" type="button" onclick="filterThreads(this,'Housing')">Housing</button>
-          <button class="thread-filter" type="button" onclick="filterThreads(this,'Transport')">Transport</button>
-          <button class="thread-filter" type="button" onclick="filterThreads(this,'International')">International</button>
-          <button class="thread-filter" type="button" onclick="filterThreads(this,'Money')">Money</button>
-        </div>
-
-        <div id="thread-list" class="thread-list" aria-live="polite"></div>
-      </div>
-    </div>
-  </div>
+<div class="pill-header blue">💬 Student Chat</div>
+<h2 class="section-title">Threaded Anonymous Q&amp;A</h2>
+<p class="section-sub">Ask anything about housing or transport. Each browser gets a persistent anonymous vector profile for replies and thread identity.</p>
+<div class="chat-section">
+<div class="chat-title">🧵 Community Threads</div>
+<div class="chat-sub">Anonymous · Threaded replies · Local demo storage · No personal data required</div>
+<div class="chat-layout">
+<aside aria-label="Your anonymous vector identity" class="vector-panel">
+<div class="vector-head">
+<div class="vector-avatar" id="current-vector-avatar"></div>
+<div>
+<div class="vector-name" id="current-vector-name">Anonymous Vector</div>
+<div class="vector-role" id="current-vector-role">Student participant</div>
+</div>
+</div>
+<div class="vector-code" id="current-vector-code">Vector loading…</div>
+<p class="vector-note">Your vector is randomly generated and saved in this browser. It helps others recognise the same anonymous user across threads without using names or emails.</p>
+<div class="vector-actions">
+<button class="mini-btn" onclick="copyVectorId()" type="button">Copy Vector</button>
+<button class="mini-btn" onclick="resetVectorUser()" type="button">New Vector</button>
+</div>
+</aside>
+<div class="thread-column">
+<div class="thread-composer">
+<div class="composer-grid">
+<input class="chat-input" id="thread-title-input" maxlength="80" placeholder="Thread title, e.g. Is Redland good for second year?" type="text"/>
+<select aria-label="Thread category" class="chat-select" id="thread-category-input">
+<option>Housing</option>
+<option>Transport</option>
+<option>Freshers</option>
+<option>International</option>
+<option>Money</option>
+</select>
+</div>
+<textarea class="chat-textarea" id="thread-body-input" maxlength="500" placeholder="Start a thread or ask a question anonymously..."></textarea>
+<div class="composer-footer">
+<span class="composer-hint">Posts are stored locally in this prototype. Refreshing keeps your demo threads on this device.</span>
+<button class="chat-send" onclick="startThread()" type="button">Start Thread</button>
+</div>
+</div>
+<div aria-label="Filter chat threads" class="thread-tools">
+<button class="thread-filter active" onclick="filterThreads(this,'all')" type="button">All</button>
+<button class="thread-filter" onclick="filterThreads(this,'Housing')" type="button">Housing</button>
+<button class="thread-filter" onclick="filterThreads(this,'Transport')" type="button">Transport</button>
+<button class="thread-filter" onclick="filterThreads(this,'International')" type="button">International</button>
+<button class="thread-filter" onclick="filterThreads(this,'Money')" type="button">Money</button>
+</div>
+<div aria-live="polite" class="thread-list" id="thread-list"></div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- MODAL (example for Unite Students) -->
 <div class="modal-overlay" id="modal-unite" onclick="closeModal(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal-unite').classList.remove('open')">✕</button>
-    <div style="font-size:2rem;margin-bottom:0.5rem;">🏢</div>
-    <div class="modal-title">Unite Students – Bristol</div>
-    <div style="font-size:0.8rem;color:#999;margin-bottom:0.5rem;">📍 City Centre, near Temple Meads</div>
-    <div class="modal-price">£175–£250 <small>/week</small></div>
-
-    <div class="modal-section">
-      <h4>Key Details</h4>
-      <div class="modal-row"><span>Bills</span><span class="good-text">✅ Included</span></div>
-      <div class="modal-row"><span>Catering</span><span class="warn-text">Self-catered only</span></div>
-      <div class="modal-row"><span>Parking</span><span class="good-text">✅ Available (extra cost)</span></div>
-      <div class="modal-row"><span>Furnished</span><span class="good-text">✅ Fully furnished</span></div>
-      <div class="modal-row"><span>Guarantor</span><span class="warn-text">⚠️ UK guarantor required</span></div>
-    </div>
-
-    <div class="modal-section">
-      <h4>Nearby Transport</h4>
-      <div class="modal-row"><span>Bus</span><span>Routes 1, 2, 8, 75</span></div>
-      <div class="modal-row"><span>Train</span><span>Temple Meads (8 min walk)</span></div>
-      <div class="modal-row"><span>UoB Campus</span><span>~25 min by bus</span></div>
-    </div>
-
-    <div class="modal-section">
-      <h4>Student Reviews</h4>
-      <div style="font-size:0.85rem;line-height:1.6;color:#555;background:#f9f5ef;padding:0.85rem;border-radius:8px;">
+<div class="modal">
+<button class="modal-close" onclick="document.getElementById('modal-unite').classList.remove('open')">✕</button>
+<div style="font-size:2rem;margin-bottom:0.5rem;">🏢</div>
+<div class="modal-title">Unite Students – Bristol</div>
+<div style="font-size:0.8rem;color:#999;margin-bottom:0.5rem;">📍 City Centre, near Temple Meads</div>
+<div class="modal-price">£175–£250 <small>/week</small></div>
+<div class="modal-section">
+<h4>Key Details</h4>
+<div class="modal-row"><span>Bills</span><span class="good-text">✅ Included</span></div>
+<div class="modal-row"><span>Catering</span><span class="warn-text">Self-catered only</span></div>
+<div class="modal-row"><span>Parking</span><span class="good-text">✅ Available (extra cost)</span></div>
+<div class="modal-row"><span>Furnished</span><span class="good-text">✅ Fully furnished</span></div>
+<div class="modal-row"><span>Guarantor</span><span class="warn-text">⚠️ UK guarantor required</span></div>
+</div>
+<div class="modal-section">
+<h4>Nearby Transport</h4>
+<div class="modal-row"><span>Bus</span><span>Routes 1, 2, 8, 75</span></div>
+<div class="modal-row"><span>Train</span><span>Temple Meads (8 min walk)</span></div>
+<div class="modal-row"><span>UoB Campus</span><span>~25 min by bus</span></div>
+</div>
+<div class="modal-section">
+<h4>Student Reviews</h4>
+<div style="font-size:0.85rem;line-height:1.6;color:#555;background:#f9f5ef;padding:0.85rem;border-radius:8px;">
         "Location is amazing but you pay for it. Noise from Temple Meads area can be an issue. Good for people who like being in the city buzz." — 3rd year student
       </div>
-    </div>
-
-    <a href="https://www.unite-students.com/bristol" target="_blank" style="display:block;text-align:center;background:var(--red);color:#fff;border-radius:8px;padding:0.75rem;font-weight:600;text-decoration:none;margin-top:1.25rem;">Visit Unite Students Website →</a>
-  </div>
 </div>
-
+<a href="https://www.unite-students.com/bristol" rel="noopener" style="display:block;text-align:center;background:var(--red);color:#fff;border-radius:8px;padding:0.75rem;font-weight:600;text-decoration:none;margin-top:1.25rem;" target="_blank">Visit Unite Students Website →</a>
+</div>
+</div>
 <!-- FOOTER -->
 <footer>
-  <!-- ✅ FOOTER LOGO EDIT START -->
+<!-- ✅ FOOTER LOGO EDIT START -->
 <div style="text-align:center;margin-bottom:0.5rem;">
-  <img 
-    src="https://i.ibb.co/S7fP510J/IMG-20260528-WA0001.jpg" 
-    alt="BrizConnect logo"
-    style="width:42px;height:42px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 0.4rem;"
-  >
-  <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;">
+<img alt="BrizConnect logo" src="https://i.ibb.co/S7fP510J/IMG-20260528-WA0001.jpg" style="width:42px;height:42px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 0.4rem;"/>
+<div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;">
     Briz<span style="color:#f5a623;">Connect</span>
-  </div>
+</div>
 </div>
 <!-- ✅ FOOTER LOGO EDIT END -->
-  Made by UoB students as part of the <strong style="color:#fff;">ThinkBig</strong> programme.<br>
-  Not an official University of Bristol resource — always verify details directly with providers.<br>
-  <br>
-  <a href="https://www.bristol.ac.uk/students/life-in-bristol/accommodation/">UoB Accommodation</a> &nbsp;·&nbsp;
-  <a href="https://www.bristol.ac.uk/alumni/get-involved/bristol-voices-/">Bristol Voices</a> &nbsp;·&nbsp;
+  Made by UoB students as part of the <strong style="color:#fff;">ThinkBig</strong> programme.<br/>
+  Not an official University of Bristol resource — always verify details directly with providers.<br/>
+<br/>
+<a href="https://www.bristol.ac.uk/students/life-in-bristol/accommodation/">UoB Accommodation</a>  · 
+  <a href="https://www.bristol.ac.uk/alumni/get-involved/bristol-voices-/">Bristol Voices</a>  · 
   <a href="https://www.bristolsu.org.uk">Students' Union</a>
-  <br><br>
-  <span style="opacity:0.4;font-size:0.7rem;">Prototype v0.1 — Information base project · Day 6 presentation ready</span>
+<br/><br/>
+<span style="opacity:0.4;font-size:0.7rem;">Prototype v0.1 — Information base project · Day 6 presentation ready</span>
 </footer>
 <!-- ✅ FOOTER LOGO EDIT END -->
 <script>
   // Filter housing cards
   function setFilter(btn, tag) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    if (btn) btn.classList.add('active');
+
     document.querySelectorAll('.housing-card').forEach(card => {
-      if (tag === 'all' || card.dataset.tags.includes(tag)) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
+      const tags = (card.dataset.tags || '').toLowerCase().split(/\s+/).filter(Boolean);
+      card.style.display = (tag === 'all' || tags.includes(tag)) ? '' : 'none';
     });
   }
 
   // Modal
   function openModal(id) {
-    document.getElementById('modal-' + id).classList.add('open');
+    const modal = document.getElementById('modal-' + id);
+    if (modal) modal.classList.add('open');
   }
   function closeModal(e) {
     if (e.target.classList.contains('modal-overlay')) {
