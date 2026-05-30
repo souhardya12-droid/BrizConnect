@@ -789,7 +789,6 @@ footer {
 <!-- NAV -->
 <nav>
 
-  /*SEARCH BAR*/
 <input 
 
   type="text" 
@@ -813,6 +812,7 @@ footer {
     } 
   }); 
 } 
+  
 <!-- ✅ LOGO EDIT START -->
 <div class="nav-logo">
 <img alt="BrizConnect logo" src="https://i.ibb.co/S7fP510J/IMG-20260528-WA0001.jpg"/>
@@ -858,6 +858,30 @@ footer {
 <button class="filter-btn" onclick="setFilter(this,'bills-included')">Bills Included</button>
 <button class="filter-btn" onclick="setFilter(this,'parking')">Has Parking</button>
 </div>
+<input 
+
+  type="text" 
+  id="housingSearch" 
+  placeholder="Search housing, areas, buses..." 
+  onkeyup="searchHousing()" 
+  style=" 
+    width:100%; 
+    padding:0.9rem 1rem; 
+    margin-bottom:1.5rem; 
+    border-radius:12px; 
+    border:1px solid #ddd; 
+    font-size:0.95rem; 
+    font-family:'DM Sans', sans-serif;"> 
+<function searchHousing() { 
+  let input=document.getElementById(housingSearch).value.toLowerCase(); 
+  let cards=document.querySelectorAll(.housing-card); 
+  cards.forEach(card){
+  let text=card.innerText.toLowerCase(); 
+    if (text.includes(input)) {card.style.display = "";} else {card.style.display = "none"; 
+    } 
+  }); 
+} 
+  
 <div class="card-grid" id="housing-grid">
 <div class="housing-card fadeup" data-tags="uob bills-included">
 <div class="card-img has-photo"><img alt="Exterior of Accommodation at Thirty-Three in Bristol" class="card-photo" decoding="async" loading="lazy" src="https://www.bristol.ac.uk/media-library/sites/accommodation/images/residences/colston-hero-large.jpg"/>
