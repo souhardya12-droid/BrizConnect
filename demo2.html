@@ -151,30 +151,7 @@
   .stat-n span { color: var(--accent); }
   .stat-l { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.15rem; text-transform: uppercase; letter-spacing: 0.06em; }
 
-  /*SEARCH BAR*/
-<input 
-
-  type="text" 
-  id="housingSearch" 
-  placeholder="Search housing, areas, buses..." 
-  onkeyup="searchHousing()" 
-  style=" 
-    width:100%; 
-    padding:0.9rem 1rem; 
-    margin-bottom:1.5rem; 
-    border-radius:12px; 
-    border:1px solid #ddd; 
-    font-size:0.95rem; 
-    font-family:'DM Sans', sans-serif;"> 
-<function searchHousing() { 
-  let input=document.getElementById(housingSearch).value.toLowerCase(); 
-  let cards=document.querySelectorAll(.housing-card); 
-  cards.forEach(card){
-  let text=card.innerText.toLowerCase(); 
-    if (text.includes(input)) {card.style.display = "";} else {card.style.display = "none"; 
-    } 
-  }); 
-}   
+    
   /* ── SECTION SHELL ── */
   .section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
   .section-title {
@@ -811,6 +788,31 @@ footer {
 </div>
 <!-- NAV -->
 <nav>
+
+  /*SEARCH BAR*/
+<input 
+
+  type="text" 
+  id="housingSearch" 
+  placeholder="Search housing, areas, buses..." 
+  onkeyup="searchHousing()" 
+  style=" 
+    width:100%; 
+    padding:0.9rem 1rem; 
+    margin-bottom:1.5rem; 
+    border-radius:12px; 
+    border:1px solid #ddd; 
+    font-size:0.95rem; 
+    font-family:'DM Sans', sans-serif;"> 
+<function searchHousing() { 
+  let input=document.getElementById(housingSearch).value.toLowerCase(); 
+  let cards=document.querySelectorAll(.housing-card); 
+  cards.forEach(card){
+  let text=card.innerText.toLowerCase(); 
+    if (text.includes(input)) {card.style.display = "";} else {card.style.display = "none"; 
+    } 
+  }); 
+} 
 <!-- ✅ LOGO EDIT START -->
 <div class="nav-logo">
 <img alt="BrizConnect logo" src="https://i.ibb.co/S7fP510J/IMG-20260528-WA0001.jpg"/>
