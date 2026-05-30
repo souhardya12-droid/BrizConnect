@@ -789,29 +789,6 @@ footer {
 <!-- NAV -->
 <nav>
 
-<input 
-
-  type="text" 
-  id="housingSearch" 
-  placeholder="Search housing, areas, buses..." 
-  onkeyup="searchHousing()" 
-  style=" 
-    width:100%; 
-    padding:0.9rem 1rem; 
-    margin-bottom:1.5rem; 
-    border-radius:12px; 
-    border:1px solid #ddd; 
-    font-size:0.95rem; 
-    font-family:'DM Sans', sans-serif;"> 
-<function searchHousing() { 
-  let input=document.getElementById(housingSearch).value.toLowerCase(); 
-  let cards=document.querySelectorAll(.housing-card); 
-  cards.forEach(card){
-  let text=card.innerText.toLowerCase(); 
-    if (text.includes(input)) {card.style.display = "";} else {card.style.display = "none"; 
-    } 
-  }); 
-} 
   
 <!-- ✅ LOGO EDIT START -->
 <div class="nav-logo">
