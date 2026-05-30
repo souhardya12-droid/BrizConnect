@@ -849,15 +849,6 @@ footer {
     border:1px solid #ddd; 
     font-size:0.95rem; 
     font-family:'DM Sans', sans-serif;"> 
-<function searchHousing() { 
-  let input=document.getElementById(housingSearch).value.toLowerCase(); 
-  let cards=document.querySelectorAll(.housing-card); 
-  cards.forEach(card){
-  let text=card.innerText.toLowerCase(); 
-    if (text.includes(input)) {card.style.display = "";} else {card.style.display = "none"; 
-    } 
-  }); 
-} 
   
 <div class="card-grid" id="housing-grid">
 <div class="housing-card fadeup" data-tags="uob bills-included">
@@ -1268,11 +1259,11 @@ footer {
 <div class="conn-title">Emergency Contacts</div>
 <div class="conn-desc">Know who to contact in case of an emergency: 
   999 for all life-threatening emergencies                
-  111 for NHS                  
-  Campus Security: 0117 331 1223                   
-  National suicide helpline: 0800 689 5652                 
-  Samaritans (emotional distress): 116 123              
-The bridge (sexual violence): 0117 342 6999</div>
+  - 111 for NHS/                  
+  - Campus Security: 0117 331 1223                   
+  - National suicide helpline: 0800 689 5652                 
+  - Samaritans (emotional distress): 116 123              
+  - The bridge (sexual violence): 0117 342 6999</div>
 <a class="conn-link" href="https://www.bristol.ac.uk/students/support/health/emergency-help/" rel="noopener" target="_blank">UOB Emergency Help →</a>
 </div>
 </div>
@@ -1901,3 +1892,13 @@ The bridge (sexual violence): 0117 342 6999</div>
 </script>
 </body>
 </html>
+
+<function searchHousing() { 
+  let input=document.getElementById(housingSearch).value.toLowerCase(); 
+  let cards=document.querySelectorAll(.housing-card); 
+  cards.forEach(card){
+  let text=card.innerText.toLowerCase(); 
+    if (text.includes(input)) {card.style.display = "";} else {card.style.display = "none"; 
+    } 
+  }); 
+} 
